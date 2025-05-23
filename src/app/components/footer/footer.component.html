@@ -1,0 +1,46 @@
+<footer class="footer">
+  <div class="footer-content">
+    <div class="newsletter">
+      <h3>{{"F.invite" | translate}}</h3>
+      <p>{{"F.get" | translate}}</p>
+      
+      <form class="subscribe-form" [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+        <input 
+          type="email" 
+          formControlName="email" 
+          [placeholder]="'F.email' | translate" 
+          required
+          [class.error]="subscriptionForm.get('email')?.invalid && subscriptionForm.get('email')?.touched"
+        >
+        <button 
+          type="submit" 
+          [disabled]="subscriptionForm.invalid || isLoading"
+        >
+          {{ isLoading ? ("F.submitting" | translate) : ("F.subscribe" | translate) }}
+        </button>
+        
+        <!-- Validation messages -->
+        <div *ngIf="subscriptionForm.get('email')?.errors?.['required'] && subscriptionForm.get('email')?.touched"
+             class="input-error">
+          {{ 'F.email_required' | translate }}
+        </div>
+        <div *ngIf="subscriptionForm.get('email')?.errors?.['email'] && subscriptionForm.get('email')?.touched"
+             class="input-error">
+          {{ 'F.email_invalid' | translate }}
+        </div>
+      </form>
+      
+      <!-- Status message -->
+      <div *ngIf="message" 
+           class="subscription-message"
+           [class.success]="messageType === 'success'"
+           [class.error]="messageType === 'error'">
+        {{ message }}
+      </div>
+    </div>  
+  </div>
+  
+  <div class="footer-bottom">
+    <p>By Mohamed Saied</p>
+  </div>
+</footer>

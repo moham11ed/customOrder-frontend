@@ -1,0 +1,9 @@
+<header>
+    <app-header [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'"></app-header>
+</header>
+<main [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+    <router-outlet ></router-outlet>
+</main>
+<footer>
+    <app-footer [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'"></app-footer>
+</footer>

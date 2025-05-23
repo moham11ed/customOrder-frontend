@@ -1,0 +1,91 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Order Summary</h2>
+    </div>
+    
+    <div class="card-body">
+      <!-- Product Information -->
+      <div class="mb-4 p-3 border rounded" *ngIf="orderData.productType">
+        <h3 class="card-title">Product Information</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Product Type:</strong> {{ orderData.productType }}</p>
+            <p><strong>Product Type ID:</strong> {{ orderData.productTypeId }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Product Name:</strong> {{ orderData.productName || 'Not specified' }}</p>
+            <p><strong>Quantity:</strong> {{ orderData.quantity || 0 }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shape Details -->
+      <div class="mb-4 p-3 border rounded" *ngIf="orderData.shapeId">
+        <h3 class="card-title">Shape Details</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Shape ID:</strong> {{ orderData.shapeId }}</p>
+          <img *ngIf="orderData.shapeImageUrl" [src]="orderData.shapeImageUrl" 
+               alt="Selected Shape" class="img-thumbnail mt-2" style="max-height: 200px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Details -->
+      <div class="mb-4 p-3 border rounded" *ngIf="orderData.designId">
+        <h3 class="card-title">Design Details</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Design ID:</strong> {{ orderData.designId }}</p>
+            <img *ngIf="orderData.designUrl" [src]="orderData.designUrl" 
+                 alt="Selected Design" class="img-thumbnail mt-2" style="max-height: 200px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Image -->
+      <div class="mb-4 p-3 border rounded" *ngIf="orderData.customImage">
+        <h3 class="card-title">Custom Image</h3>
+        <img *ngIf="orderData.customImage" [src]="orderData.customImage" 
+             alt="Custom Image" class="img-thumbnail" style="max-height: 300px;">
+      </div>
+
+      <!-- Selected Oils -->
+      <div class="mb-4 p-3 border rounded" *ngIf="orderData.selectedOils && orderData.selectedOils.length > 0">
+        <h3 class="card-title">Selected Oils</h3>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let oil of orderData.selectedOils">
+            {{ oil.name || oil.id }} <span class="badge bg-secondary">{{ oil.quantity || 1 }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Client Information -->
+      <div class="mb-4 p-3 border rounded" *ngIf="orderData.clientInfo">
+        <h3 class="card-title">Client Information</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Name:</strong> {{ orderData.clientInfo.name }}</p>
+            <p><strong>Email:</strong> {{ orderData.clientInfo.email }}</p>
+            <p><strong>Phone:</strong> {{ orderData.clientInfo.phone }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Country:</strong> {{ orderData.clientInfo.country }}</p>
+            <p><strong>City:</strong> {{ orderData.clientInfo.city }}</p>
+            <p><strong>Street:</strong> {{ orderData.clientInfo.street }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+      <button (click)="goBack()" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+      <button *ngIf="orderData.clientInfo" class="btn btn-success">
+        <i class="bi bi-check-circle"></i> Submit Order
+      </button>
+    </div>
+  </div>
+</div>

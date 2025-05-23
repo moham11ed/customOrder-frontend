@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <!-- Card container -->
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <!-- Title -->
+          <h2 class="text-center mb-4">{{ 'NAME.TITLE' | translate }}</h2>
+          
+          <!-- Product name selection -->
+          <div class="mb-4">
+            <div class="alert alert-info text-center mb-4">
+              <span *ngIf="!selectedName">{{ 'NAME.SELECT_PROMPT' | translate }}</span>
+              <span *ngIf="selectedName" class="fw-bold text-success">{{ 'NAME.SELECTED_CONFIRMATION' | translate }} {{ selectedName }}</span>
+            </div>
+            
+            <div class="row row-cols-1 row-cols-md-2 g-3">
+              <div *ngFor="let product of productNames" class="col">
+                <div 
+                  class="card h-100 cursor-pointer p-3"
+                  [ngClass]="{'border-primary': selectedName === product.name, 'bg-light': selectedName === product.name}"
+                  (click)="selectedName = product.name"
+                >
+                  <div class="form-check mb-0">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="productName"
+                      [id]="'name' + product.id"
+                      [value]="product.name"
+                      [(ngModel)]="selectedName"
+                      hidden
+                    />
+                    <label class="form-check-label w-100 text-center" [for]="'name' + product.id">
+                      <h5 class="card-title">{{ product.name }}</h5>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation buttons -->
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-secondary" (click)="goToPreviousStep()">
+              {{ 'T.BACK' | translate }}
+            </button>
+            <button 
+              class="btn btn-primary"
+              (click)="goToNextStep()" 
+              [disabled]="!selectedName"
+            >
+              {{ 'T.NEXT' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+{
+  "T": {
+    "Sitename": "ETABEMA",
+    "Using": "الاستخدام",
+    "Tracking": "تتبع",
+    "Orders": "الطلبات",
+    "NEXT": "التالي",
+    "BACK": "رجوع"
+  },
+  "F":{
+    "invite":"اشترك في نشرتنا الإخبارية",
+    "get":"ليصلك كل جديد",
+    "email":"بريدك الألكتروني",
+    "subscribe":"اشترك",
+    "subscribe_success": "تم الاشتراك بنجاح! شكراً لك.",
+    "subscribe_error": "حدث خطأ. يرجى المحاولة مرة أخرى لاحقاً.",
+    "invalid_email": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
+    "subscribe_exists": "هذا البريد الإلكتروني مشترك بالفعل.",
+    "network_error": "خطأ في الشبكة. يرجى التحقق من اتصالك.",
+    "email_required": "البريد الإلكتروني مطلوب",
+    "email_invalid": "الرجاء إدخال بريد إلكتروني صحيح"
+  },
+  "C": {
+    "SELECT_PRODUCT_TYPE": "اختر نوع المنتج",
+    "YOU_SELECTED": "لقد اخترت:"
+  },
+   "OILS": {
+    "TITLE": "مكونات المنتج",
+    "LOADING": "جاري التحميل...",
+    "LOADING_OILS": "جاري تحميل الزيوت...",
+    "RETRY": "إعادة المحاولة",
+    "SELECT_X_OILS": "اختر 3 زيوت",
+    "SELECTED": "محدد",
+    "SELECTION_CONFIRMATION": "!لقد اخترت 3 زيوت",
+    "YOUR_SELECTION": "اختياراتك"
+  },
+  "SHAPE": {
+    "TITLE": "اختر شكل الزجاجة",
+    "SELECT_PROMPT": "اختر شكلاً",
+    "SELECTED_CONFIRMATION": "تم اختيار الشكل"
+  },
+  "DESIGN": {
+    "TITLE": "اختر تصميم المنتج",
+    "SELECT_PROMPT": "اختر تصميمًا",
+    "SELECTED_CONFIRMATION": "تم اختيار التصميم"
+  },
+   "NAME": {
+    "TITLE": "اختر اسم المنتج",
+    "SELECT_PROMPT": "اختر اسمًا للمنتج",
+    "SELECTED_CONFIRMATION": "لقد اخترت:"
+  },
+  "AMOUNT": {
+    "TITLE": "اختر كمية الزجاجات",
+    "PROMPT": "أدخل الكمية المطلوبة",
+    "SELECTED_QUANTITY": "الكمية المحددة:"
+  },
+  "USER": {
+    "TITLE": "المعلومات الشخصية",
+    "NAME": "الاسم الكامل",
+    "EMAIL": "البريد الإلكتروني",
+    "PHONE": "رقم الهاتف",
+    "COUNTRY": "الدولة",
+    "CITY": "المدينة",
+    "STREET": "عنوان الشارع"
+  }
+}

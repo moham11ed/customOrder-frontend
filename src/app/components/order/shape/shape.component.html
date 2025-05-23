@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <!-- Card container -->
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <!-- Title -->
+          <h2 class="text-center mb-4">{{ 'SHAPE.TITLE' | translate }}</h2>
+          
+          <!-- Shape selection -->
+          <div class="mb-4">
+            <div class="alert alert-info text-center mb-4">
+              <span *ngIf="!selectedShapeId">{{ 'SHAPE.SELECT_PROMPT' | translate }}</span>
+              <span *ngIf="selectedShapeId" class="fw-bold text-success">{{ 'SHAPE.SELECTED_CONFIRMATION' | translate }}</span>
+            </div>
+            
+            <div class="row row-cols-2 row-cols-md-3 g-3">
+              <div *ngFor="let shape of shapes" class="col">
+                <div 
+                  class="card h-100 cursor-pointer p-3 text-center"
+                  [ngClass]="{'border-primary': selectedShapeId === shape.id, 'bg-light': selectedShapeId === shape.id}"
+                  (click)="selectShape(shape.id , shape.imageUrl)"
+                >
+                  <img 
+                    [src]="shape.imageUrl" 
+                    [alt]="'Shape ' + shape.id" 
+                    class="img-fluid"
+                    style="height: 100px; object-fit: contain;"
+                  >
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation buttons -->
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-secondary" (click)="goToPreviousStep()">
+              {{ 'T.BACK' | translate }}
+            </button>
+            <button 
+              class="btn btn-outline-primary"
+              (click)="goToNextStep()" 
+              [disabled]="!selectedShapeId"
+            >
+              {{ 'T.NEXT' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

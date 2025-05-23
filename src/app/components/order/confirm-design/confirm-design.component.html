@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <!-- Card container -->
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <!-- Title -->
+          <h2 class="text-center mb-4">{{ 'CONFIRM_DESIGN.TITLE' | translate }}</h2>
+          
+          <!-- Loading state -->
+          <div *ngIf="isLoading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">{{ 'CONFIRM_DESIGN.LOADING' | translate }}</p>
+          </div>
+
+          <!-- Error state -->
+          <div *ngIf="error && !isLoading" class="alert alert-danger text-center">
+            {{ error }}
+          </div>
+
+          <!-- Design confirmation -->
+          <div *ngIf="!isLoading && !error" class="mb-4">
+            <div class="alert alert-info text-center mb-4">
+              <span>{{ 'CONFIRM_DESIGN.YOUR_DESIGN' | translate }}</span>
+            </div>
+            
+            <!-- Display the generated shape image -->
+            <div class="text-center mb-4">
+              <img 
+                *ngIf="generatedShape"
+                [src]="generatedShape" 
+                alt="Your custom design"
+                class="img-fluid rounded-3 border"
+                style="max-height: 300px; object-fit: contain;"
+              >
+              <div *ngIf="!generatedShape" class="text-muted py-5">
+                {{ 'CONFIRM_DESIGN.NO_DESIGN' | translate }}
+              </div>
+            </div>
+
+            <!-- Design confirmation message -->
+            <div class="alert alert-success text-center">
+              <p class="mb-0">{{ 'CONFIRM_DESIGN.CONFIRMATION' | translate }}</p>
+            </div>
+          </div>
+
+          <!-- Navigation buttons -->
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-secondary" (click)="goToPreviousStep()">
+              {{ 'T.BACK' | translate }}
+            </button>
+            <button 
+              class="btn btn-primary"
+              (click)="goToNextStep()" 
+              [disabled]="!generatedShape"
+            >
+              {{ 'T.NEXT' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <!-- Card container -->
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <!-- Title -->
+          <h2 class="text-center mb-4">{{ 'USER.TITLE' | translate }}</h2>
+          
+          <!-- User Info Form -->
+          <form (ngSubmit)="submitForm()" #clientForm="ngForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">{{ 'USER.NAME' | translate }}</label>
+              <input type="text" 
+                     class="form-control" 
+                     id="name"
+                     [(ngModel)]="user.name" 
+                     name="name"
+                     required
+                     [class.is-invalid]="clientForm.submitted && !user.name">
+              <div *ngIf="clientForm.submitted && !user.name" class="invalid-feedback">
+                {{ 'VALIDATION.REQUIRED' | translate }}
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">{{ 'USER.EMAIL' | translate }}</label>
+              <input type="email" 
+                     class="form-control" 
+                     id="email"
+                     [(ngModel)]="user.email" 
+                     name="email"
+                     required
+                     [class.is-invalid]="clientForm.submitted && !user.email">
+              <div *ngIf="clientForm.submitted && !user.email" class="invalid-feedback">
+                {{ 'VALIDATION.REQUIRED' | translate }}
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="phone" class="form-label">{{ 'USER.PHONE' | translate }}</label>
+              <input type="tel" 
+                     class="form-control" 
+                     id="phone"
+                     [(ngModel)]="user.phone" 
+                     name="phone"
+                     required
+                     [class.is-invalid]="clientForm.submitted && !user.phone">
+              <div *ngIf="clientForm.submitted && !user.phone" class="invalid-feedback">
+                {{ 'VALIDATION.REQUIRED' | translate }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="country" class="form-label">{{ 'USER.COUNTRY' | translate }}</label>
+                <input type="text" 
+                       class="form-control" 
+                       id="country"
+                       [(ngModel)]="user.country" 
+                       name="country"
+                       required
+                       [class.is-invalid]="clientForm.submitted && !user.country">
+                <div *ngIf="clientForm.submitted && !user.country" class="invalid-feedback">
+                  {{ 'VALIDATION.REQUIRED' | translate }}
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="city" class="form-label">{{ 'USER.CITY' | translate }}</label>
+                <input type="text" 
+                       class="form-control" 
+                       id="city"
+                       [(ngModel)]="user.city" 
+                       name="city"
+                       required
+                       [class.is-invalid]="clientForm.submitted && !user.city">
+                <div *ngIf="clientForm.submitted && !user.city" class="invalid-feedback">
+                  {{ 'VALIDATION.REQUIRED' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="street" class="form-label">{{ 'USER.STREET' | translate }}</label>
+              <input type="text" 
+                     class="form-control" 
+                     id="street"
+                     [(ngModel)]="user.street" 
+                     name="street"
+                     required
+                     [class.is-invalid]="clientForm.submitted && !user.street">
+              <div *ngIf="clientForm.submitted && !user.street" class="invalid-feedback">
+                {{ 'VALIDATION.REQUIRED' | translate }}
+              </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-secondary" (click)="goToPreviousStep()">
+                {{ 'T.BACK' | translate }}
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+                <span *ngIf="!isSubmitting">{{ 'T.NEXT' | translate }}</span>
+                <span *ngIf="isSubmitting">{{ 'T.SUBMITTING' | translate }}...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

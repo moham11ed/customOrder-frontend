@@ -1,0 +1,69 @@
+{
+  "T": {
+    "Sitename": "ETABEMA",
+    "Using": "Using",
+    "Tracking": "Tracking",
+    "Orders": "Orders",
+    "NEXT": "Next",
+    "BACK": "Back"
+    
+  },
+  "F": {
+  "invite": "Subscribe to our newsletter",
+  "get": "Get the latest updates and special offers",
+  "email": "Your email",
+  "subscribe": "Subscribe",
+   "subscribe_success": "Subscription successful! Thank you.",
+    "subscribe_error": "An error occurred. Please try again later.",
+    "invalid_email": "Please enter a valid email address.",
+    "subscribe_exists": "This email is already subscribed.",
+    "network_error": "Network error. Please check your connection.",
+    "email_required": "Email is required",
+    "email_invalid": "Please enter a valid email"
+},
+ "C": {
+    "SELECT_PRODUCT_TYPE": "Select a product type",
+    "YOU_SELECTED": "You've selected:"
+  },
+  "OILS": {
+    "TITLE": "Product Ingredients",
+    "LOADING": "Loading...",
+    "LOADING_OILS": "Loading oils...",
+    "RETRY": "Retry",
+    "SELECT_X_OILS": "Select 3 oils",
+    "SELECTED": "selected",
+    "SELECTION_CONFIRMATION": "You've selected 3 oils!",
+    "YOUR_SELECTION": "Your Selection"
+  },
+  "SHAPE": {
+    "TITLE": "Choose Bottle Shape",
+    "SELECT_PROMPT": "Select a shape",
+    "SELECTED_CONFIRMATION": "Shape selected"
+  },
+  "DESIGN": {
+    "TITLE": "Select Product Design",
+    "SELECT_PROMPT": "Select a design",
+    "SELECTED_CONFIRMATION": "Design selected"
+    },
+     "NAME": {
+    "TITLE": "Choose Product Name",
+    "SELECT_PROMPT": "Select a product name",
+    "SELECTED_CONFIRMATION": "You've selected:"
+  },
+  "AMOUNT": {
+    "TITLE": "Select Quantity of Bottles",
+    "PROMPT": "Enter the desired quantity",
+    "SELECTED_QUANTITY": "Selected quantity:"
+  },
+  "USER": {
+    "TITLE": "Personal Information",
+    "NAME": "Full Name",
+    "EMAIL": "Email Address",
+    "PHONE": "Phone Number",
+    "COUNTRY": "Country",
+    "CITY": "City",
+    "STREET": "Street Address"
+  }
+  
+  
+}

@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <!-- Card container -->
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <!-- Title -->
+          <h2 class="text-center mb-4">{{ 'C.SELECT_PRODUCT_TYPE' | translate }}</h2>
+          
+          <!-- Product type selection -->
+          <div class="mb-4">
+            <div class="alert alert-info text-center mb-4">
+              <span *ngIf="!selectedType">{{'C.SELECT_PRODUCT_TYPE' | translate}}</span>
+              <span *ngIf="selectedType" class="fw-bold text-success">{{'C.YOU_SELECTED' | translate}} {{ "T." + selectedType | translate }}</span>
+            </div>
+            
+            <div class="row row-cols-1 row-cols-md-2 g-3">
+              <div *ngFor="let type of productTypes" class="col">
+                <div 
+                  class="card h-100 cursor-pointer p-3"
+                  [ngClass]="{'border-primary': selectedType === type.type, 'bg-light': selectedType === type.type}"
+                  (click)="selectType(type.type, type.id)"
+                >
+                  <div class="form-check mb-0">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="productType"
+                      [id]="type.type"
+                      [value]="type.type"
+                      [(ngModel)]="selectedType"
+                      hidden
+                    />
+                    <label class="form-check-label w-100 text-center" [for]="type.type">
+                      <h5 class="card-title">{{ "T." + type.type | translate }}</h5>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next button centered -->
+          <div class="text-center mt-4">
+            <button 
+              class="btn btn-outline-primary px-4 py-2"
+              (click)="goToNextStep()" 
+              [disabled]="!selectedType"
+            >
+              {{ 'T.NEXT' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

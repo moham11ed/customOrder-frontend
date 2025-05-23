@@ -1,0 +1,66 @@
+{
+  "T": {
+    "Sitename": "ETABEMA",
+    "Using": "Usando",
+    "Tracking": "Rastreamento",
+    "Orders": "Pedidos",
+    "NEXT": "Próximo",
+    "BACK": "Voltar"
+  },
+  "F": {
+  "invite": "Inscreva-se na nossa newsletter",
+  "get": "Receba as últimas atualizações e ofertas especiais",
+  "email": "Seu e-mail",
+  "subscribe": "Inscrever-se",
+   "subscribe_success": "Inscrição realizada com sucesso! Obrigado.",
+    "subscribe_error": "Ocorreu um erro. Por favor, tente novamente mais tarde.",
+    "invalid_email": "Por favor, insira um endereço de e-mail válido.",
+    "subscribe_exists": "Este e-mail já está inscrito.",
+    "network_error": "Erro de rede. Por favor, verifique sua conexão.",
+    "email_required": "E-mail é obrigatório",
+    "email_invalid": "Por favor, insira um e-mail válido"
+},
+"C": {
+    "SELECT_PRODUCT_TYPE": "Selecione um tipo de produto",
+    "YOU_SELECTED": "Você selecionou:"
+  },
+  "OILS": {
+    "LOADING": "Carregando...",
+    "LOADING_OILS": "Carregando óleos...",
+    "RETRY": "Tentar novamente",
+    "SELECT_X_OILS": "Selecione 3 óleos",
+    "SELECTED": "selecionado",
+    "SELECTION_CONFIRMATION": "Você selecionou 3 óleos!",
+    "YOUR_SELECTION": "Sua Seleção",
+    "TITLE": "Ingredientes do Produto"
+  },
+   "SHAPE": {
+    "TITLE": "Escolha o Formato do Frasco",
+    "SELECT_PROMPT": "Selecione um formato",
+    "SELECTED_CONFIRMATION": "Formato selecionado"
+  },
+    "DESIGN": {
+    "TITLE": "Selecione o Design do Produto",
+    "SELECT_PROMPT": "Selecione um design",
+    "SELECTED_CONFIRMATION": "Design selecionado"
+  },
+   "NAME": {
+    "TITLE": "Escolha o Nome do Produto",
+    "SELECT_PROMPT": "Selecione um nome para o produto",
+    "SELECTED_CONFIRMATION": "Você selecionou:"
+  },
+    "AMOUNT": {
+    "TITLE": "Selecione a Quantidade de Frascos",
+    "PROMPT": "Insira a quantidade desejada",
+    "SELECTED_QUANTITY": "Quantidade selecionada:"
+  },
+  "USER": {
+    "TITLE": "Informações Pessoais",
+    "NAME": "Nome Completo",
+    "EMAIL": "E-mail",
+    "PHONE": "Telefone",
+    "COUNTRY": "País",
+    "CITY": "Cidade",
+    "STREET": "Endereço"
+  }
+}

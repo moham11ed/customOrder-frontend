@@ -1,0 +1,16 @@
+header
+{
+    position: sticky;
+	top: 0;
+	z-index: 999;
+}
+
+main
+{
+    width: 90%;
+    margin:15px auto;
+}
+footer
+{
+    width: 100%;
+}

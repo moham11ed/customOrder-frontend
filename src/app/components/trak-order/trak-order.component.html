@@ -1,0 +1,49 @@
+<div class="container mt-5" >
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">عرض البيانات</h5>
+          
+          <!-- حقل الإدخال مع الزر باستخدام Bootstrap -->
+          <div class="input-group mb-3">
+            <input 
+              type="text" 
+              [(ngModel)]="userInput" 
+              class="form-control" 
+              placeholder="أدخل النص هنا"
+            >
+            <button 
+              class="btn btn-primary" 
+              type="button" 
+              (click)="showData()"
+            >
+              {{ "T.Tracking" | translate }}
+            </button>
+          </div>
+
+          <!-- منطقة عرض البيانات -->
+          <div *ngIf="isVisible" class="mt-4">
+            <div class="card">
+              <div class="card-body">
+                <!-- عرض نص الإدخال إذا كان موجودًا -->
+                <div *ngIf="userInput" class="alert alert-info">
+                  <strong>النص المدخل:</strong> {{ userInput }}
+                </div>
+                
+                <!-- البيانات الثابتة -->
+                <h4 class="text-center mb-3">مرحباً بك في موقعنا</h4>
+                <img 
+                  src="assets/images/sample-image.jpg" 
+                  alt="صورة تجريبية"
+                  class="img-fluid rounded d-block mx-auto"
+                  style="max-height: 300px;"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
