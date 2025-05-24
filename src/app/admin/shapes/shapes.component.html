@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Bottle Designs</h2>
+
+  <!-- Add New Shape -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>Add New Design</h5>
+    </div>
+    <div class="card-body">
+      <form (submit)="createShape()">
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="text" class="form-control" [(ngModel)]="newShape.imageUrl" name="newShapeImageUrl" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Design</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shapes List -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shape of shapes">
+          <td>{{ shape.id }}</td>
+          <td>
+            <img *ngIf="shape.imageUrl" [src]="shape.imageUrl" alt="Bottle design" class="shape-image img-thumbnail">
+            <span *ngIf="!shape.imageUrl">No image</span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-warning action-btn" (click)="startEdit(shape)">Edit</button>
+            <button class="btn btn-sm btn-danger action-btn" (click)="deleteShape(shape.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" [class.show]="editShape !== null" [style.display]="editShape !== null ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Design</h5>
+          <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+        </div>
+        <div class="modal-body" *ngIf="editShape">
+          <form (submit)="updateShape()">
+            <div class="form-group">
+              <label>Image URL</label>
+              <input type="text" class="form-control" [(ngModel)]="editShape.imageUrl" name="editShapeImageUrl" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="editShape !== null" [style.display]="editShape !== null ? 'block' : 'none'"></div>
+</div>

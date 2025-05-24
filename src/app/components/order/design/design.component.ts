@@ -38,7 +38,7 @@ export class DesignComponent implements OnInit {
   }
 
   loadDesigns(): void {
-    this.designService.getOils().subscribe({
+    this.designService.getDesigns().subscribe({
       next: (designs) => {
         this.designs = designs;``
       },

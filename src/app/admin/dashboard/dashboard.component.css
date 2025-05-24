@@ -1,0 +1,23 @@
+.sidebar {
+  min-height: 100vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+  background-color: #0d6efd;
+  color: white !important;
+}
+
+/* Collapsible sub-menu */
+.nav-item.dropdown .nav-link {
+  cursor: pointer;
+}

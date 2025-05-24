@@ -11,6 +11,7 @@ import { ProductNameComponent } from './components/order/product-name/product-na
 import { ClientInfoComponent } from './components/order/client-info/client-info.component';
 import { ProductAmountComponent } from './components/order/product-amount/product-amount.component';
 import { OrderSummaryComponent } from './components/order/order-summary/order-summary.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -70,5 +71,10 @@ export const routes: Routes = [
         path: 'trak-order',
         component: TrakOrderComponent,
     },
+     {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    
+  }
    
 ];

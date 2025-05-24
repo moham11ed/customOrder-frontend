@@ -83,7 +83,7 @@
       <button (click)="goBack()" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back
       </button>
-      <button *ngIf="orderData.clientInfo" class="btn btn-success">
+      <button (click)="printOrder()" class="btn btn-success">
         <i class="bi bi-check-circle"></i> Submit Order
       </button>
     </div>

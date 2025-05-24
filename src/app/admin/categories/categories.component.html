@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Product Categories</h2>
+
+  <!-- Create Form -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>Add New Category</h5>
+    </div>
+    <div class="card-body">
+      <form (submit)="createProductType()">
+        <div class="mb-3">
+          <label for="newType" class="form-label">Category Name</label>
+          <input type="text" class="form-control" id="newType" [(ngModel)]="newProductType.type" name="type" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Category</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Form (shown only when editing) -->
+  <div class="card mb-4" *ngIf="isEditing && editingProductType">
+    <div class="card-header bg-warning">
+      <h5>Edit Category</h5>
+    </div>
+    <div class="card-body">
+      <form (submit)="updateProductType()">
+        <div class="mb-3">
+          <label for="editType" class="form-label">Category Name</label>
+          <input type="text" class="form-control" id="editType" [(ngModel)]="editingProductType.type" name="type" required>
+        </div>
+        <button type="submit" class="btn btn-success me-2">Update</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Categories List -->
+  <div class="card">
+    <div class="card-header">
+      <h5>Existing Categories</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let productType of productTypes">
+            <td>{{ productType.id }}</td>
+            <td>{{ productType.type }}</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2" (click)="editProductType(productType)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteProductType(productType.id)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="productTypes.length === 0">
+            <td colspan="3" class="text-center">No categories found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

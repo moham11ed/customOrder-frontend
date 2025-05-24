@@ -1,0 +1,69 @@
+<!-- shape-with-design.component.html -->
+<div class="container mt-4">
+  <h2 class="mb-4">Shape with Design Combinations</h2>
+
+  <!-- Add New Combination -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5>Add New Combination</h5>
+    </div>
+    <div class="card-body">
+      <form (submit)="addCombination()" class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Shape ID</label>
+          <input type="number" class="form-control" [(ngModel)]="newCombination.shapeId" name="shapeId" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Design ID</label>
+          <input type="number" class="form-control" [(ngModel)]="newCombination.designId" name="designId" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Image URL</label>
+          <input type="text" class="form-control" [(ngModel)]="newCombination.imageUrl" name="imageUrl">
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add Combination</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Combinations List -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Shape</th>
+          <th>Design</th>
+          <th>Custom Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let combo of combinations">
+          <td>{{ combo.id }}</td>
+          <td>
+            <div *ngIf="combo.bottleDesign">
+              <img [src]="combo.bottleDesign.imageUrl" alt="Shape" class="img-thumbnail" style="max-height: 100px;">
+              <div>ID: {{ combo.shapeId }}</div>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="combo.logoDesign">
+              <img [src]="combo.logoDesign.imageUrl" alt="Design" class="img-thumbnail" style="max-height: 100px;">
+              <div>ID: {{ combo.designId }}</div>
+            </div>
+          </td>
+          <td>
+            <img *ngIf="combo.imageUrl" [src]="combo.imageUrl" alt="Custom Image" class="img-thumbnail" style="max-height: 100px;">
+            <span *ngIf="!combo.imageUrl">No custom image</span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="deleteCombination(combo.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

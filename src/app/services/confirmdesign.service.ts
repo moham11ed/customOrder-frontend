@@ -1,25 +1,40 @@
+// confirm-design.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
-
+export interface ShapeWithDesign {
+  id: number;
+  shapeId: number;
+  designId: number;
+  imageUrl: string;
+  bottleDesign: {
+    id: number;
+    imageUrl: string;
+  };
+  logoDesign: {
+    id: number;
+    imageUrl: string;
+  };
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfirmDesignService {
-  private apiUrl1 = '/api/ShapeWithDesigns';
-  //private apiUrl2 = '/api/ShapeWithDesigns/ByShapeAndDesign'; 
+  private apiUrl = '/api/ShapeWithDesigns';
 
   constructor(private http: HttpClient) {}
 
-  getShapeWithDesign(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl1);
+  getAll(): Observable<ShapeWithDesign[]> {
+    return this.http.get<ShapeWithDesign[]>(this.apiUrl);
   }
 
-  // getShapeWithDesignById(shapeId: any, designId: any ): Observable<any> {
-  //   const url = `${this.apiUrl2}/${shapeId}/${designId}/`;
-  //   return this.http.get<any>(url);
-  // }
+  create(shapeWithDesign: Omit<ShapeWithDesign, 'id'>): Observable<ShapeWithDesign> {
+    return this.http.post<ShapeWithDesign>(this.apiUrl, shapeWithDesign);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

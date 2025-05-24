@@ -1,0 +1,63 @@
+<div class="subscription-container">
+  <h2 class="text-center mb-4">Email Subscriptions</h2>
+
+  <!-- Subscription Form -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Subscribe to Newsletter</h5>
+      <form (submit)="onSubmit()">
+        <div class="mb-3">
+          <label for="emailInput" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="emailInput" 
+                 [(ngModel)]="email" name="email" required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Subscribe
+        </button>
+        
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Subscribers List -->
+  <div class="subscribers-list">
+    <h5 class="mb-3">Current Subscribers</h5>
+    
+    <div *ngIf="isLoading && subscribers.length === 0" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    
+    <div *ngIf="!isLoading && subscribers.length === 0" class="alert alert-info">
+      No subscribers yet.
+    </div>
+
+    <div *ngIf="subscribers.length > 0" class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Email</th>
+            
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subscriber of subscribers">
+            <td>{{ subscriber }}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" 
+                      (click)="onUnsubscribe(subscriber.email)"
+                      [disabled]="isLoading">
+                Unsubscribe
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

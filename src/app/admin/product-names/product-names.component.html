@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Product Names</h2>
+
+  <!-- Add New Product Name -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>Add New Product Name</h5>
+    </div>
+    <div class="card-body">
+      <form (submit)="createProductName()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="newProductName.name" name="newProductName" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Product Name</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Product Names List -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let productName of productNames">
+          <td>{{ productName.id }}</td>
+          <td>{{ productName.name }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning action-btn" (click)="startEdit(productName)">Edit</button>
+            <button class="btn btn-sm btn-danger action-btn" (click)="deleteProductName(productName.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" [class.show]="editProductName !== null" [style.display]="editProductName !== null ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Product Name</h5>
+          <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+        </div>
+        <div class="modal-body" *ngIf="editProductName">
+          <form (submit)="updateProductName()">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" [(ngModel)]="editProductName.name" name="editProductName" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="editProductName !== null" [style.display]="editProductName !== null ? 'block' : 'none'"></div>
+</div>

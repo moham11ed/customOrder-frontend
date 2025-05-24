@@ -34,7 +34,7 @@ export class ShapeComponent implements OnInit {
   }
 
   loadShapes(): void {
-    this.shapeService.getOils().subscribe({
+    this.shapeService.getShapes().subscribe({
       next: (shapes) => {
         this.shapes = shapes;
       },

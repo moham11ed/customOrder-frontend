@@ -70,7 +70,6 @@ export class ClientInfoComponent {
       next: (response) => {
         this.isSubmitting = false;
         if (response.success) {
-          this.orderService.clearOrder(); // Clear order data after success
           this.router.navigate(['/summary'], { queryParams: { orderId: response.orderId } });
         } else {
           this.errorMessage = this.translate.instant('F.order_submission_failed');

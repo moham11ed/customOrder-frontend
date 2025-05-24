@@ -25,9 +25,14 @@ export class OrderSummaryComponent implements OnInit {
     
   }
 
+
   goBack(): void {
     this.router.navigate(['/client-info']);
   }
+  printOrder(): void {
+    // Implement the logic to print the order here
+    console.log(this.orderData);
+  }
 
-  // Optional: Add a method to print the order
+  
 }

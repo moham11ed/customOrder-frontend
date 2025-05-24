@@ -37,7 +37,7 @@ export class ConfirmDesignComponent implements OnInit {
     this.isLoading = true;
     this.error = null;
     
-    this.confirmDesign.getShapeWithDesign().subscribe({
+    this.confirmDesign.getAll().subscribe({
       next: (data) => {
         this.allImages = data;
         console.log(this.allImages);

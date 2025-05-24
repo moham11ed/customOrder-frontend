@@ -27,7 +27,7 @@ export class ProductNameComponent {
   ) {}
 
    ngOnInit(): void {
-    this.productNameService.getProductTypes().subscribe({
+    this.productNameService.getAll().subscribe({
       next: (data) => {
         this.productNames = data;
         

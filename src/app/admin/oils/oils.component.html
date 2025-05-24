@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Oil Options</h2>
+
+  <!-- Search and Add New -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search oils..." [(ngModel)]="searchTerm" (input)="searchOils()">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchOils()">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create New Oil Form -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>Add New Oil</h5>
+    </div>
+    <div class="card-body">
+      <form (submit)="createOil()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="newOil.name" name="newOilName" required>
+        </div>
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="text" class="form-control" [(ngModel)]="newOil.imageUrl" name="newOilImageUrl">
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <select class="form-control" [(ngModel)]="newOil.type" name="newOilType">
+            <option *ngFor="let type of oilTypes" [value]="type">{{getOilTypeName(type)}}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Oil</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Oil List -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Image URL</th>
+          <th>Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let oil of filteredOils">
+          <td>{{ oil.id }}</td>
+          <td>{{ oil.name }}</td>
+          <td>
+            <a *ngIf="oil.imageUrl" [href]="oil.imageUrl" target="_blank">View Image</a>
+            <span *ngIf="!oil.imageUrl">No image</span>
+          </td>
+          <td>{{ getOilTypeName(oil.type) }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning action-btn" (click)="startEdit(oil)">Edit</button>
+            <button class="btn btn-sm btn-danger action-btn" (click)="deleteOil(oil.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" [class.show]="editOil !== null" [style.display]="editOil !== null ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Oil</h5>
+          <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+        </div>
+        <div class="modal-body" *ngIf="editOil">
+          <form (submit)="updateOil()">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" [(ngModel)]="editOil.name" name="editOilName" required>
+            </div>
+            <div class="form-group">
+              <label>Image URL</label>
+              <input type="text" class="form-control" [(ngModel)]="editOil.imageUrl" name="editOilImageUrl">
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <select class="form-control" [(ngModel)]="editOil.type" name="editOilType">
+                <option *ngFor="let type of oilTypes" [value]="type">{{getOilTypeName(type)}}</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="editOil !== null" [style.display]="editOil !== null ? 'block' : 'none'"></div>
+</div>
