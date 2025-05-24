@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersService, Order } from '../../services/orders.service';
+import { OrdersService, OrderData } from '../../services/orders.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-orders',
@@ -12,9 +13,9 @@ import { RouterModule } from '@angular/router';
   styles: []
 })
 export class OrdersComponent implements OnInit {
-  orders: Order[] = [];
-  filteredOrders: Order[] = [];
-  selectedOrder: Order | null = null;
+  orders: OrderData[] = [];
+  filteredOrders: OrderData[] = [];
+  selectedOrder: any;
   isLoading = false;
   errorMessage = '';
   successMessage = '';
@@ -25,6 +26,10 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOrders();
+    console.log(this.orders);
+    console.log(this.orders[0]);
+    
+    
   }
 
   loadOrders(): void {
@@ -39,6 +44,8 @@ export class OrdersComponent implements OnInit {
         this.errorMessage = err.message;
         this.isLoading = false;
       }
+
+      
     });
   }
 
@@ -71,17 +78,7 @@ export class OrdersComponent implements OnInit {
   }
 
   viewOrderDetails(id: number): void {
-    this.isLoading = true;
-    this.orderService.getOrderById(id).subscribe({
-      next: (order) => {
-        this.selectedOrder = order;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.errorMessage = err.message;
-        this.isLoading = false;
-      }
-    });
+   this.selectedOrder = this.orders[id];
   }
 
   updateOrderStatus(id: number, newStatus: string): void {

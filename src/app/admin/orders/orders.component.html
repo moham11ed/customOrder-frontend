@@ -71,8 +71,8 @@
           <tbody>
             <tr *ngFor="let order of filteredOrders">
               <td>{{ order.id }}</td>
-              <td>{{ order.productName }} (x{{ order.quantity }})</td>
-              <td>{{ order.clientInfo?.name }}<br>{{ order.clientInfo?.email }}</td>
+              <td>{{ order.productName}} (x {{ order.quantity }})</td>
+              <td>{{ order.clientName }}</td>
               <td>{{ order.createdAt | date:'shortDate' }}</td>
               <td>
                 <span [ngClass]="{
@@ -148,14 +148,14 @@
           <div class="row">
             <div class="col-md-6">
               <h6>Customer Information</h6>
-              <p><strong>Name:</strong> {{ selectedOrder.clientInfo?.name }}</p>
-              <p><strong>Email:</strong> {{ selectedOrder.clientInfo?.email }}</p>
-              <p><strong>Phone:</strong> {{ selectedOrder.clientInfo?.phone }}</p>
+              <p><strong>Name:</strong> {{ selectedOrder.clientName }}</p>
+              <p><strong>Email:</strong> {{ selectedOrder.clientEmail }}</p>
+              <p><strong>Phone:</strong> {{ selectedOrder.clientPhone }}</p>
             </div>
             <div class="col-md-6">
               <h6>Shipping Address</h6>
-              <p>{{ selectedOrder.clientInfo?.street }}</p>
-              <p>{{ selectedOrder.clientInfo?.city }}, {{ selectedOrder.clientInfo?.country }}</p>
+              <p>{{ selectedOrder.clientStreet }}</p>
+              <p>{{ selectedOrder.clientCity }}, {{ selectedOrder.clientCountry }}</p>
             </div>
           </div>
         </div>

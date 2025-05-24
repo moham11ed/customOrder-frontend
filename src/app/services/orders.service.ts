@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-export interface Order {
+export interface OrderData {
   id?: number;
   productType: string;
   productTypeId: number;
@@ -15,38 +15,17 @@ export interface Order {
   designId?: number;
   designUrl?: string;
   customImage?: string;
-  clientInfo: {
-    name: string;
-    email: string;
-    phone: string;
-    country: string;
-    city: string;
-    street: string;
-  };
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  clientCountry: string;
+  clientCity: string;
+  clientStreet: string;
   createdAt?: Date;
   status?: string;
 }
 
-export interface OrderData {
-  productType: string;
-  productTypeId: number;
-  productName: string;
-  quantity: number;
-  selectedOilsJson: string;
-  shapeId?: number;
-  shapeImageUrl?: string;
-  designId?: number;
-  designUrl?: string;
-  customImage?: string;
-  clientInfo: {
-    name: string;
-    email: string;
-    phone: string;
-    country: string;
-    city: string;
-    street: string;
-  };
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -67,22 +46,22 @@ export class OrdersService {
   }
 
   // Get order by ID
-  getOrderById(id: number): Observable<Order> {
-    return this.http.get<Order>(`${this.apiUrl}/${id}`).pipe(
+  getOrderById(id: number): Observable<OrderData> {
+    return this.http.get<OrderData>(`${this.apiUrl}/${id}`).pipe(
       catchError(this.handleError)
     );
   }
 
   // Get orders by email
-  getOrdersByEmail(email: string): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/by-email/${encodeURIComponent(email)}`).pipe(
+  getOrdersByEmail(email: string): Observable<OrderData[]> {
+    return this.http.get<OrderData[]>(`${this.apiUrl}/by-email/${encodeURIComponent(email)}`).pipe(
       catchError(this.handleError)
     );
   }
 
   // Get all orders
-  getAllOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.apiUrl).pipe(
+  getAllOrders(): Observable<OrderData[]> {
+    return this.http.get<OrderData[]>(this.apiUrl).pipe(
       catchError(this.handleError)
     );
   }
