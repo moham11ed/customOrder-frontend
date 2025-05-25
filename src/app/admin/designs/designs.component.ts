@@ -22,16 +22,6 @@ import { FormsModule } from '@angular/forms';
       max-width: 100px;
       max-height: 100px;
     }
-    .upload-area {
-      border: 2px dashed #ccc;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 15px;
-      cursor: pointer;
-    }
-    .upload-area:hover {
-      border-color: #aaa;
-    }
   `]
 })
 export class DesignsComponent implements OnInit {
@@ -39,10 +29,8 @@ export class DesignsComponent implements OnInit {
   newDesign: Design = {
     id: 0,
     imageUrl: '',
-    customImage: null
   };
   editDesign: Design | null = null;
-  selectedFile: File | null = null;
 
   constructor(private designService: DesignService) {}
 
@@ -57,53 +45,32 @@ export class DesignsComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
-      // Create a preview URL
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        if (this.editDesign) {
-          this.editDesign.imageUrl = e.target.result;
-        } else {
-          this.newDesign.imageUrl = e.target.result;
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
   startEdit(design: Design): void {
-    this.editDesign = { ...design, customImage: null };
-    this.selectedFile = null;
+    this.editDesign = { ...design };
   }
 
   cancelEdit(): void {
     this.editDesign = null;
-    this.selectedFile = null;
   }
 
   createDesign(): void {
-    if (!this.selectedFile) return;
-
     const formData = new FormData();
-    formData.append('image', this.selectedFile);
+    formData.append('imageUrl', this.newDesign.imageUrl);
 
     this.designService.createDesign(formData).subscribe({
       next: (design) => {
         this.designs.push(design);
-        this.resetForm();
+        this.newDesign = { id: 0, imageUrl: '' };
       },
       error: (err) => console.error('Error creating design:', err)
     });
   }
 
   updateDesign(): void {
-    if (!this.editDesign || !this.selectedFile) return;
-
+    if (!this.editDesign) return;
+    
     const formData = new FormData();
-    formData.append('image', this.selectedFile);
+    formData.append('imageUrl', this.editDesign.imageUrl);
 
     this.designService.updateDesign(this.editDesign.id, formData).subscribe({
       next: () => {
@@ -111,7 +78,7 @@ export class DesignsComponent implements OnInit {
         if (index !== -1) {
           this.designs[index] = { ...this.editDesign! };
         }
-        this.cancelEdit();
+        this.editDesign = null;
       },
       error: (err) => console.error('Error updating design:', err)
     });
@@ -126,14 +93,5 @@ export class DesignsComponent implements OnInit {
         error: (err) => console.error('Error deleting design:', err)
       });
     }
-  }
-
-  private resetForm(): void {
-    this.newDesign = {
-      id: 0,
-      imageUrl: '',
-      customImage: null
-    };
-    this.selectedFile = null;
   }
 }

@@ -43,6 +43,8 @@ export class SubscripersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSubscribers();
+    
+    
   }
 
   loadSubscribers(): void {
@@ -86,6 +88,8 @@ export class SubscripersComponent implements OnInit {
   }
 
   onUnsubscribe(email: string): void {
+    console.log(email);
+    
     if (confirm(`Are you sure you want to unsubscribe ${email}?`)) {
       this.isLoading = true;
       this.subscriptionService.unsubscribe(email).subscribe({

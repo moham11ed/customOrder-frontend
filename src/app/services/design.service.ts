@@ -13,6 +13,7 @@ export interface Design {
 })
 export class DesignService {
   private apiUrl = '/api/LogoDesigns'; 
+  private apiUrl2 = 'https://localhost:7176/api/LogoDesigns';
 
   constructor(private http: HttpClient) {}
 
@@ -23,21 +24,21 @@ export class DesignService {
 
   // Get design by ID
   getDesignById(id: number): Observable<Design> {
-    return this.http.get<Design>(`${this.apiUrl}/${id}`);
+    return this.http.get<Design>(`${this.apiUrl2}/${id}`);
   }
 
   // Create new design
   createDesign(design: FormData): Observable<Design> {
-    return this.http.post<Design>(this.apiUrl, design);
+    return this.http.post<Design>(this.apiUrl2, design);
   }
 
   // Update design
   updateDesign(id: number, design: FormData): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, design);
+    return this.http.put(`${this.apiUrl2}/${id}`, design);
   }
 
   // Delete design
   deleteDesign(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl2}/${id}`);
   }
 }

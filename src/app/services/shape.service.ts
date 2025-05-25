@@ -12,6 +12,7 @@ export interface Shape {
 })
 export class ShapeService {
   private apiUrl = '/api/BottleDesigns'; 
+  private apiUrl2 = 'https://localhost:7176/api/BottleDesigns';
 
   constructor(private http: HttpClient) {}
 
@@ -22,21 +23,21 @@ export class ShapeService {
 
   // Get shape by ID
   getShapeById(id: number): Observable<Shape> {
-    return this.http.get<Shape>(`${this.apiUrl}/${id}`);
+    return this.http.get<Shape>(`${this.apiUrl2}/${id}`);
   }
 
   // Create new shape
   createShape(shape: Shape): Observable<Shape> {
-    return this.http.post<Shape>(this.apiUrl, shape);
+    return this.http.post<Shape>(this.apiUrl2, shape);
   }
 
   // Update shape
   updateShape(id: number, shape: Shape): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, shape);
+    return this.http.put(`${this.apiUrl2}/${id}`, shape);
   }
 
   // Delete shape
   deleteShape(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl2}/${id}`);
   }
 }

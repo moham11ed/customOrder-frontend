@@ -19,6 +19,7 @@ export interface Oil {
 })
 export class OilService {
   private apiUrl = 'api/Oils'; 
+  private apiUrl2 = "https://localhost:7176/api/Oils";
 
   constructor(private http: HttpClient) {}
 
@@ -29,26 +30,26 @@ export class OilService {
 
   // Get oil by ID
   getOilById(id: number): Observable<Oil> {
-    return this.http.get<Oil>(`${this.apiUrl}/${id}`);
+    return this.http.get<Oil>(`${this.apiUrl2}/${id}`);
   }
 
   // Create new oil
   createOil(oil: Oil): Observable<Oil> {
-    return this.http.post<Oil>(this.apiUrl, oil);
+    return this.http.post<Oil>(this.apiUrl2, oil);
   }
 
   // Update oil
   updateOil(id: number, oil: Oil): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, oil);
+    return this.http.put(`${this.apiUrl2}/${id}`, oil);
   }
 
   // Delete oil
   deleteOil(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl2}/${id}`);
   }
 
   // Search oils by name
   searchOils(name: string): Observable<Oil[]> {
-    return this.http.get<Oil[]>(`${this.apiUrl}/search?name=${name}`);
+    return this.http.get<Oil[]>(`${this.apiUrl2}/search?name=${name}`);
   }
 }
