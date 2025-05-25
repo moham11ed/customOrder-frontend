@@ -1,44 +1,54 @@
-<div class="container mt-5" >
+<div class="container mt-4">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-4">عرض البيانات</h5>
+    <div class="col-12 col-md-8 col-lg-6">
+      <!-- Card container -->
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <!-- Title -->
+          <h2 class="text-center mb-4">{{ "T.TrackOrder" | translate }}</h2>
           
-          <!-- حقل الإدخال مع الزر باستخدام Bootstrap -->
-          <div class="input-group mb-3">
-            <input 
-              type="text" 
-              [(ngModel)]="userInput" 
-              class="form-control" 
-              placeholder="أدخل النص هنا"
-            >
-            <button 
-              class="btn btn-primary" 
-              type="button" 
-              (click)="showData()"
-            >
-              {{ "T.Tracking" | translate }}
-            </button>
+          <!-- Input field with button -->
+          <div class="mb-4">
+            <div class="input-group">
+              <input 
+                type="text" 
+                [(ngModel)]="userInput" 
+                class="form-control" 
+                [placeholder]="'T.EnterOrderID' | translate"
+              >
+              <button 
+                class="btn btn-primary" 
+                type="button" 
+                (click)="showData()"
+                [disabled]="isLoading"
+              >
+                <span *ngIf="!isLoading">{{ "T.Tracking" | translate }}</span>
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              </button>
+            </div>
           </div>
 
-          <!-- منطقة عرض البيانات -->
-          <div *ngIf="isVisible" class="mt-4">
-            <div class="card">
-              <div class="card-body">
-                <!-- عرض نص الإدخال إذا كان موجودًا -->
-                <div *ngIf="userInput" class="alert alert-info">
-                  <strong>النص المدخل:</strong> {{ userInput }}
-                </div>
-                
-                <!-- البيانات الثابتة -->
-                <h4 class="text-center mb-3">مرحباً بك في موقعنا</h4>
-                <img 
-                  src="assets/images/sample-image.jpg" 
-                  alt="صورة تجريبية"
-                  class="img-fluid rounded d-block mx-auto"
-                  style="max-height: 300px;"
-                >
+          <!-- Error message -->
+          <div *ngIf="errorMessage" class="alert alert-danger text-center">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Order status display area -->
+          <div *ngIf="isVisible && orderStatus" class="mt-4">
+            <div class="alert text-center mb-4" [ngClass]="{
+              'alert-info': orderStatus === 'Received',
+              'alert-warning': orderStatus === 'Processing',
+              'alert-success': orderStatus === 'Completed',
+              'alert-danger': orderStatus === 'Cancelled'
+            }">
+              <h4 class="mb-3">{{ "T.OrderStatus" | translate }}</h4>
+              <div class="fw-bold">
+                <strong>{{ "T.Status" | translate }}:</strong> {{ orderStatus }}
+              </div>
+              
+              <!-- Order details -->
+              <div *ngIf="userInput" class="mt-3">
+                <strong>{{ "T.OrderID" | translate }}:</strong> {{ userInput }}
               </div>
             </div>
           </div>

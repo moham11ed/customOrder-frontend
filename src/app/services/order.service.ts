@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { env } from 'process';
+import { environment } from '../../environments/environment.development';
 
 export interface Order {
   id?: number;
@@ -32,7 +34,7 @@ export interface Order {
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = '/api/Orders';
+  private apiUrl = environment.apiURL +'/api/Orders';
   private orderDataSubject = new BehaviorSubject<Partial<Order>>({});
   public orderData$ = this.orderDataSubject.asObservable();
 
@@ -55,28 +57,7 @@ export class OrderService {
     );
   }
 
-  getOrderById(id: number): Observable<Order> {
-    return this.http.get<Order>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleOrderError)
-    );
-  }
-
-  getOrdersByEmail(email: string): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/by-email/${email}`).pipe(
-      catchError(this.handleOrderError)
-    );
-  }
-
-  updateOrderStatus(id: number, status: string): Observable<boolean> {
-    return this.http.patch<{ success: boolean }>(
-      `${this.apiUrl}/${id}/status`, 
-      `"${status}"`,
-      { headers: { 'Content-Type': 'application/json' } }
-    ).pipe(
-      map(response => response.success),
-      catchError(this.handleOrderError)
-    );
-  }
+  
 
   private prepareOrderData(): Order {
     const currentData = this.orderDataSubject.value;

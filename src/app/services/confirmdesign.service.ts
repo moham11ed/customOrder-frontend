@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 export interface ShapeWithDesign {
   id: number;
@@ -22,7 +23,7 @@ export interface ShapeWithDesign {
   providedIn: 'root'
 })
 export class ConfirmDesignService {
-  private apiUrl = '/api/ShapeWithDesigns';
+  private apiUrl = environment.apiURL+'/api/ShapeWithDesigns';
 
   constructor(private http: HttpClient) {}
 

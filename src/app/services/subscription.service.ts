@@ -14,6 +14,7 @@ export interface Subscription {
 })
 export class SubscriptionService {
   private apiUrl = '/api/Subscriptions';
+  private apiUrl2 = 'https://localhost:7176/api/Subscriptions';
 
   constructor(private http: HttpClient) { }
 
@@ -40,7 +41,7 @@ export class SubscriptionService {
 
   // Unsubscribe
   unsubscribe(email: string): Observable<string> {
-    return this.http.delete<string>(`${this.apiUrl}/${encodeURIComponent(email)}`).pipe(
+    return this.http.delete<string>(`${this.apiUrl2}/${encodeURIComponent(email)}`).pipe(
       catchError(this.handleError)
     );
   }

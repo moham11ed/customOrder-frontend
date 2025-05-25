@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import e from 'express';
+import { environment } from '../../environments/environment';
+
 
 export interface ProductType {
   id: number;
@@ -11,8 +14,8 @@ export interface ProductType {
   providedIn: 'root'
 })
 export class ProductTypeService {
-  private apiUrl = '/api/ProductType'; 
-  private apiUrl2 = 'https://localhost:7176/api/ProductType';
+  private apiUrl = environment.apiURL +'/api/ProductType'; 
+
 
   constructor(private http: HttpClient) {}
 
@@ -23,7 +26,7 @@ export class ProductTypeService {
 
   // Get single product type by id
   getProductType(id: number): Observable<ProductType> {
-    return this.http.get<ProductType>(`${this.apiUrl2}/${id}`);
+    return this.http.get<ProductType>(`${this.apiUrl}/${id}`);
   }
 
   // Create new product type
@@ -33,11 +36,11 @@ export class ProductTypeService {
 
   // Update existing product type
   updateProductType(id: number, productType: ProductType): Observable<any> {
-    return this.http.put(`${this.apiUrl2}/${id}`, productType);
+    return this.http.put(`${this.apiUrl}/${id}`, productType);
   }
 
   // Delete product type
   deleteProductType(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl2}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

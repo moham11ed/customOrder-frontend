@@ -57,7 +57,7 @@ export class DesignsComponent implements OnInit {
     const formData = new FormData();
     formData.append('imageUrl', this.newDesign.imageUrl);
 
-    this.designService.createDesign(formData).subscribe({
+    this.designService.createDesign(this.newDesign).subscribe({
       next: (design) => {
         this.designs.push(design);
         this.newDesign = { id: 0, imageUrl: '' };
@@ -72,7 +72,7 @@ export class DesignsComponent implements OnInit {
     const formData = new FormData();
     formData.append('imageUrl', this.editDesign.imageUrl);
 
-    this.designService.updateDesign(this.editDesign.id, formData).subscribe({
+    this.designService.updateDesign(this.editDesign.id, this.editDesign).subscribe({
       next: () => {
         const index = this.designs.findIndex(d => d.id === this.editDesign?.id);
         if (index !== -1) {

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { env } from 'process';
+import { environment } from '../../environments/environment.development';
 
 export interface OrderData {
   id?: number;
@@ -31,7 +33,8 @@ export interface OrderData {
   providedIn: 'root'
 })
 export class OrdersService {
-  private apiUrl = '/api/Orders';
+  private apiUrl = environment.apiURL +'/api/Orders';
+
 
   constructor(private http: HttpClient) { }
 
@@ -67,11 +70,20 @@ export class OrdersService {
   }
 
   // Update order status
-  updateOrderStatus(id: number, status: string): Observable<{ success: boolean; message: string }> {
-    return this.http.patch<{ success: boolean; message: string }>(
-      `${this.apiUrl}/${id}/status`,
-      { status }
-    ).pipe(
+ updateOrderStatus(id: number, status: string): Observable<any> {
+  const url = `${this.apiUrl}/${id}/status`;
+  
+  
+  return this.http.patch(url, `"${status}"`, { 
+    headers: {
+      'Content-Type': 'application/json'  
+    }
+  });
+}
+
+// get order status
+  getOrderStatus(id: number): Observable<{ status: string }> {
+    return this.http.get<{ status: string }>(`${this.apiUrl}/${id}/status`).pipe(
       catchError(this.handleError)
     );
   }

@@ -3,7 +3,7 @@ import { OrdersService, OrderData } from '../../services/orders.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { log } from 'node:console';
+
 
 @Component({
   selector: 'app-orders',
@@ -26,10 +26,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOrders();
-    console.log(this.orders);
-    console.log(this.orders[0]);
-    
-    
+ 
   }
 
   loadOrders(): void {
@@ -78,19 +75,10 @@ export class OrdersComponent implements OnInit {
   }
 
   viewOrderDetails(id: number): void {
-   this.selectedOrder = this.orders[id];
-  }
-
-  updateOrderStatus(id: number, newStatus: string): void {
-    if (!newStatus) return;
-
     this.isLoading = true;
-    this.orderService.updateOrderStatus(id, newStatus).subscribe({
-      next: (success) => {
-        if (success) {
-          this.successMessage = 'Order status updated successfully';
-          this.loadOrders();
-        }
+    this.orderService.getOrderById(id).subscribe({
+      next: (order) => {
+        this.selectedOrder = order;
         this.isLoading = false;
       },
       error: (err) => {
@@ -99,6 +87,25 @@ export class OrdersComponent implements OnInit {
       }
     });
   }
+
+ updateOrderStatus(id: number, newStatus: string): void {
+  if (!newStatus) return;
+  
+  if (confirm(`Are you sure you want to update the status to ${newStatus}?`)) {
+    this.isLoading = true;
+    this.orderService.updateOrderStatus(id, newStatus).subscribe({
+      next: (response) => {
+        this.successMessage = response.message || 'Order status updated successfully';
+        this.loadOrders();
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || err.message || 'Failed to update order status';
+        this.isLoading = false;
+      }
+    });
+  }
+}
 
   closeDetails(): void {
     this.selectedOrder = null;

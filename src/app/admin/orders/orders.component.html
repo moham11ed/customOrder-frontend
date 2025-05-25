@@ -95,7 +95,7 @@
                     Status
                   </button>
                   <ul class="dropdown-menu">
-                    <li *ngFor="let status of ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled']">
+                    <li *ngFor='let status of ["Pending", "Processing", "Shipped", "Delivered", "Cancelled"]'>
                       <a class="dropdown-item" (click)="updateOrderStatus(order.id!, status)">{{ status }}</a>
                     </li>
                   </ul>
