@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UploadImageService } from '../../services/upload-image.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ export class DashboardComponent {
   uploadSuccess: boolean = false;
   errorMessage: string = '';
 
-  constructor(private uploadService: UploadImageService) {}
+  constructor(private uploadService: UploadImageService,private authService: AuthService, private router: Router) {}
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0] as File;
@@ -58,5 +59,10 @@ export class DashboardComponent {
     this.isLoading = false;
     this.uploadSuccess = false;
     this.errorMessage = '';
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

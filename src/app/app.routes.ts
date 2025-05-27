@@ -11,7 +11,9 @@ import { ProductNameComponent } from './components/order/product-name/product-na
 import { ClientInfoComponent } from './components/order/client-info/client-info.component';
 import { ProductAmountComponent } from './components/order/product-amount/product-amount.component';
 import { OrderSummaryComponent } from './components/order/order-summary/order-summary.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { InvoiceComponent } from './components/order/invoice/invoice.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +23,10 @@ export const routes: Routes = [
              ///// rout in order
                         {
                             path: '',
+                            component: CategoryComponent,
+                        },
+                        {
+                            path: 'category',
                             component: CategoryComponent,
                         },
                         {
@@ -54,6 +60,10 @@ export const routes: Routes = [
                         {
                             path: 'summary',
                             component: OrderSummaryComponent,
+                        },
+                        {
+                            path: 'invoice',
+                            component: InvoiceComponent,
                         }
             ]
     },
@@ -71,10 +81,11 @@ export const routes: Routes = [
         path: 'trak-order',
         component: TrakOrderComponent,
     },
+    { path: 'login', component: LoginComponent },
      {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    
+    canActivate: [AuthGuard]
   }
    
 ];

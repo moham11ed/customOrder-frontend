@@ -39,12 +39,12 @@ export class SubscripersComponent implements OnInit {
   successMessage = '';
   isLoading = false;
 
-  constructor(private subscriptionService: SubscriptionService) {}
+  constructor(private subscriptionService: SubscriptionService) { }
 
   ngOnInit(): void {
     this.loadSubscribers();
-    
-    
+
+
   }
 
   loadSubscribers(): void {
@@ -53,7 +53,7 @@ export class SubscripersComponent implements OnInit {
       next: (subscribers) => {
         this.subscribers = subscribers;
         console.log(this.subscribers);
-        
+
         this.isLoading = false;
       },
       error: (err) => {
@@ -66,7 +66,7 @@ export class SubscripersComponent implements OnInit {
   onSubmit(): void {
     this.errorMessage = '';
     this.successMessage = '';
-    
+
     if (!this.email || !this.email.includes('@')) {
       this.errorMessage = 'Please enter a valid email address';
       return;
@@ -87,23 +87,23 @@ export class SubscripersComponent implements OnInit {
     });
   }
 
-  onUnsubscribe(email: string): void {
-    console.log(email);
-    
-    if (confirm(`Are you sure you want to unsubscribe ${email}?`)) {
-      this.isLoading = true;
-      this.subscriptionService.unsubscribe(email).subscribe({
-        next: (message) => {
-          this.successMessage = message;
-          
-          this.subscribers = this.subscribers.filter(subscriber => subscriber !== email);
-          this.isLoading = false;
-        },
-        error: (err) => {
-          this.errorMessage = err;
-          this.isLoading = false;
-        }
-      });
-    }
+onUnsubscribe(email: string): void {
+  if (confirm(`Are you sure you want to unsubscribe ${email}?`)) {
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    this.subscriptionService.unsubscribe(email).subscribe({
+      next: (message) => {
+        this.successMessage = message; 
+        this.loadSubscribers();
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.errorMessage = err;
+        this.isLoading = false;
+      }
+    });
   }
+}
 }

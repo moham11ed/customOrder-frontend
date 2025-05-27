@@ -1,2 +1,15 @@
-
-<router-outlet [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'"></router-outlet>
+<div class="order-container" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+  <div class="progress-tracker">
+    <div *ngFor="let route of routes; let i = index" 
+         class="step" 
+         [class.completed]="isStepCompleted(i)"
+         [class.current]="isCurrentStep(i)">
+      <mat-icon class="step-icon">{{route.icon}}</mat-icon>
+      <mat-icon *ngIf="isStepCompleted(i)" class="check-icon">check</mat-icon>
+    </div>
+  </div>
+  
+  <div class="router-outlet-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

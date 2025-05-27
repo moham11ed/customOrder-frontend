@@ -8,7 +8,7 @@
           <h2 class="text-center mb-4">{{ 'USER.TITLE' | translate }}</h2>
           
           <!-- User Info Form -->
-          <form (ngSubmit)="submitForm()" #clientForm="ngForm">
+          <form (ngSubmit)="saveAndContinue()" #clientForm="ngForm">
             <div class="mb-3">
               <label for="name" class="form-label">{{ 'USER.NAME' | translate }}</label>
               <input type="text" 
@@ -99,9 +99,8 @@
               <button type="button" class="btn btn-secondary" (click)="goToPreviousStep()">
                 {{ 'T.BACK' | translate }}
               </button>
-              <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
-                <span *ngIf="!isSubmitting">{{ 'T.NEXT' | translate }}</span>
-                <span *ngIf="isSubmitting">{{ 'T.SUBMITTING' | translate }}...</span>
+              <button type="submit" class="btn btn-primary" >
+                <span >{{ 'T.NEXT' | translate }}</span>
               </button>
             </div>
           </form>

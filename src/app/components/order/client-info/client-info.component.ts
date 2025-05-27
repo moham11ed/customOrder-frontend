@@ -22,7 +22,6 @@ export class ClientInfoComponent {
     street: '',
   };
 
-  isSubmitting = false;
   errorMessage: string | null = null;
 
   constructor(
@@ -53,37 +52,15 @@ export class ClientInfoComponent {
     return emailRegex.test(email);
   }
 
-  submitForm(): void {
+  saveAndContinue(): void {
     if (!this.isFormValid()) {
       this.errorMessage = this.translate.instant('F.form_invalid');
       return;
     }
 
-    this.isSubmitting = true;
-    this.errorMessage = null;
-
     // Update order data with client info
     this.orderService.updateOrderData({ clientInfo: this.user });
-
-    console.log(this.orderService.getCurrentOrder());
-    
-    // Submit the order
-    this.orderService.submitOrder().subscribe({
-      next: (response) => {
-        this.isSubmitting = false;
-        if (response.success) {
-          this.orderService.updateOrderData({ id: response.orderId });
-          this.router.navigate(['/summary'], { queryParams: { orderId: response.orderId } });
-        } else {
-          this.errorMessage = this.translate.instant('F.order_submission_failed');
-        }
-      },
-      error: (err) => {
-        this.isSubmitting = false;
-        this.errorMessage = this.translate.instant(err.message || 'F.order_error');
-        console.error('Order submission failed:', err);
-      },
-    });
+    this.router.navigate(['/summary']);
   }
 
   goToPreviousStep() {

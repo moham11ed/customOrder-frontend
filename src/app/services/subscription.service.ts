@@ -15,18 +15,18 @@ export interface Subscription {
   providedIn: 'root'
 })
 export class SubscriptionService {
-  private apiUrl = environment.apiURL+'/api/Subscriptions';
+  private apiUrl = environment.apiURL + '/api/Subscriptions';
 
   constructor(private http: HttpClient) { }
 
   // Subscribe with email
   subscribe(email: string): Observable<string> {
-    return this.http.post<string>(
+    return this.http.post(
       this.apiUrl, 
       `"${email}"`, 
       {
         headers: { 'Content-Type': 'application/json' },
-        responseType: 'text' as 'json'
+        responseType: 'text'  // Proper plain text handling
       }
     ).pipe(
       catchError(this.handleError)
@@ -40,9 +40,14 @@ export class SubscriptionService {
     );
   }
 
-  // Unsubscribe
+  // Unsubscribe - fixed implementation
   unsubscribe(email: string): Observable<string> {
-    return this.http.delete<string>(`${this.apiUrl}/${encodeURIComponent(email)}`).pipe(
+    return this.http.delete(
+      `${this.apiUrl}/${encodeURIComponent(email)}`,
+      {
+        responseType: 'text'  // Crucial for plain text responses
+      }
+    ).pipe(
       catchError(this.handleError)
     );
   }
@@ -55,6 +60,6 @@ export class SubscriptionService {
     } else if (error.status === 400) {
       return throwError(() => 'Invalid email format');
     }
-    return throwError(() => 'An unexpected error occurred');
+    return throwError(() => error.error || 'An unexpected error occurred');
   }
 }

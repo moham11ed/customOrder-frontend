@@ -90,6 +90,6 @@ export class ConfirmDesignComponent implements OnInit {
   }
 
   goToPreviousStep() {
-    this.router.navigate(['/category']);
+    this.router.navigate(['/design']);
   }
 }
