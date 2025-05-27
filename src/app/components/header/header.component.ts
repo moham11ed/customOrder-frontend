@@ -5,7 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
-  standalone: true, // Add standalone: true
+  standalone: true, 
   imports: [
     RouterModule,
     TranslateModule, 

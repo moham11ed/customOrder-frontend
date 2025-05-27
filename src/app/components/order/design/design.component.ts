@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Design } from '../../../services/design.service';
 import { FormsModule } from '@angular/forms';
 import { OrderService } from '../../../services/order.service';
+import { UploadImageService } from '../../../services/upload-image.service'; // Add this import
 
 @Component({
   selector: 'app-design',
@@ -24,13 +25,16 @@ export class DesignComponent implements OnInit {
   showExistingDesigns: boolean = true;
   selectedFile: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
-  uploadedImageUrl: any | null = null;
-  designUrl: any | null = null
+  uploadedImageUrl: string | null = null;
+  designUrl: string | null = null;
+  uploadInProgress = false;
+  uploadError: string | null = null;
 
   constructor(
     private router: Router,
     private designService: DesignService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private uploadService: UploadImageService 
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +44,7 @@ export class DesignComponent implements OnInit {
   loadDesigns(): void {
     this.designService.getDesigns().subscribe({
       next: (designs) => {
-        this.designs = designs;``
+        this.designs = designs;
       },
       error: (err) => {
         console.error('Error loading designs:', err);
@@ -52,7 +56,7 @@ export class DesignComponent implements OnInit {
     this.showExistingDesigns = showExisting;
     if (!showExisting) {
       this.selectedDesignId = null;
-      this.designUrl = null
+      this.designUrl = null;
     } else {
       this.selectedFile = null;
       this.imagePreview = null;
@@ -63,6 +67,7 @@ export class DesignComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       this.selectedFile = input.files[0];
+      this.uploadError = null; // Reset error when new file selected
       
       // Create preview
       const reader = new FileReader();
@@ -76,6 +81,7 @@ export class DesignComponent implements OnInit {
   clearFile(): void {
     this.selectedFile = null;
     this.imagePreview = null;
+    this.uploadError = null;
     const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
     if (fileInput) {
       fileInput.value = '';
@@ -83,40 +89,58 @@ export class DesignComponent implements OnInit {
   }
 
   uploadImage(): void {
-    if (!this.selectedFile) return;
-    
-    // In a real app, you would upload to a server here
-    // For demo, we'll just use the preview as the "uploaded" image
-    this.uploadedImageUrl = this.imagePreview as any;
-    this.orderService.updateOrderData({ 
-      customImage: this.uploadedImageUrl as any,
-      designId: null,
-      designUrl: null
-    } as any);
-    this.selectedDesignId = null;
-    this.designUrl = null
+    if (!this.selectedFile) {
+      this.uploadError = 'Please select an image first';
+      return;
+    }
+
+    this.uploadInProgress = true;
+    this.uploadError = null;
+
+    this.uploadService.uploadImage(this.selectedFile).subscribe({
+      next: (response) => {
+        this.uploadedImageUrl = response.fileUrl;
+        console.log('Image uploaded successfully:', this.uploadedImageUrl);//for test 
+        this.orderService.updateOrderData({ 
+          customImage: null,
+          designId: null,
+          designUrl: this.uploadedImageUrl
+        });
+        this.selectedDesignId = null;
+        this.designUrl = null;
+        this.uploadInProgress = false;
+      },
+      error: (err) => {
+        console.error('Image upload failed:', err);
+        this.uploadError = 'Failed to upload image. Please try again.';
+        if (err.status === 413) {
+          this.uploadError = 'File is too large. Please choose a smaller image.';
+        } else if (err.status === 415) {
+          this.uploadError = 'Unsupported file type. Please use JPEG, PNG, or GIF.';
+        }
+        this.uploadInProgress = false;
+      }
+    });
   }
 
   selectDesign(designId: number, designUrl: string): void {
-    console.log(designUrl)
     this.selectedDesignId = designId;
-    this.uploadedImageUrl = null as any;
-    this.designUrl = designUrl
+    this.uploadedImageUrl = null;
+    this.designUrl = designUrl;
     this.orderService.updateOrderData({ 
       designId,
       designUrl,
-      customImage: null as any
-    } as any);
+      customImage: null
+    });
   }
 
   goToNextStep() {
     if (this.selectedDesignId || this.uploadedImageUrl) {
-      if(this.selectedDesignId){
+      if (this.selectedDesignId) {
         this.router.navigate(['/confirm-design']);
       } else {
         this.router.navigate(['/product-name']);
       }
-      
     }
   }
 

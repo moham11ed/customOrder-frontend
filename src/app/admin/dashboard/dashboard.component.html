@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" dir="ltr">
   <div class="row">
     <!-- Sidebar -->
     <div class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
@@ -64,7 +64,86 @@
     
     <!-- Main Content -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <button 
+            type="button" 
+            class="btn btn-primary"
+            data-bs-toggle="modal" 
+            data-bs-target="#uploadModal"
+            (click)="resetUploadState()">
+            <i class="bi bi-upload me-1"></i> Upload Image
+          </button>
+        </div>
+      </div>
+
       <router-outlet></router-outlet>
+
+      <!-- Bootstrap Modal for Image Upload -->
+      <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="uploadModalLabel">Upload Image</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="imageUpload" class="form-label">Select Image</label>
+                <input 
+                  class="form-control" 
+                  type="file" 
+                  id="imageUpload"
+                  (change)="onFileSelected($event)"
+                  accept="image/*">
+              </div>
+
+              <div *ngIf="isLoading" class="text-center my-3">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p>Uploading image...</p>
+              </div>
+
+              <div *ngIf="errorMessage" class="alert alert-danger">
+                {{ errorMessage }}
+              </div>
+
+              <div *ngIf="uploadSuccess" class="alert alert-success">
+                <p>Image uploaded successfully!</p>
+                <div class="input-group mb-3">
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    [value]="imageUrl"
+                    readonly>
+                  <button 
+                    class="btn btn-outline-secondary" 
+                    type="button"
+                    (click)="copyImageUrl()">
+                    Copy
+                  </button>
+                </div>
+                <div *ngIf="imageUrl" class="mt-3">
+                  <p>Preview:</p>
+                  <img [src]="imageUrl" class="img-fluid" style="max-height: 200px;">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button 
+                type="button" 
+                class="btn btn-primary"
+                (click)="uploadImage()"
+                [disabled]="!selectedFile || isLoading">
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </div>

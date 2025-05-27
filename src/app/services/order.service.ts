@@ -49,13 +49,31 @@ export class OrderService {
     return this.orderDataSubject.value;
   }
 
-  submitOrder(): Observable<{ success: boolean; orderId?: number }> {
-    const orderData = this.prepareOrderData();
-    return this.http.post<{ id: number }>(this.apiUrl, orderData).pipe(
-      map(response => ({ success: true, orderId: response.id })),
-      catchError(this.handleOrderError)
-    );
-  }
+submitOrder(): Observable<{ success: boolean; orderId: number; message: string }> {
+  const orderData = this.prepareOrderData();
+  return this.http.post<{ 
+    id: number; 
+    success: boolean; 
+    message: string 
+  }>(this.apiUrl, orderData).pipe(
+    map(response => ({
+      success: response.success,
+      orderId: response.id,
+      message: response.message
+    })),
+    catchError((error: HttpErrorResponse) => {
+      // Handle different error scenarios with proper typing
+      const errorResponse = {
+        success: false,
+        orderId: 0,
+        message: this.handleOrderError(error)
+      };
+      return throwError(() => errorResponse);
+    })
+  );
+}
+
+
 
   
 

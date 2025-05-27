@@ -21,6 +21,7 @@ export class OrdersComponent implements OnInit {
   successMessage = '';
   searchEmail = '';
   statusFilter = '';
+  showModal = false;
 
   constructor(private orderService: OrdersService) {}
 
@@ -35,6 +36,7 @@ export class OrdersComponent implements OnInit {
       next: (orders) => {
         this.orders = orders;
         this.filteredOrders = [...orders];
+        console.log(this.orders);
         this.isLoading = false;
       },
       error: (err) => {
@@ -44,6 +46,7 @@ export class OrdersComponent implements OnInit {
 
       
     });
+    
   }
 
   searchOrders(): void {
@@ -74,11 +77,12 @@ export class OrdersComponent implements OnInit {
     }
   }
 
-  viewOrderDetails(id: number): void {
+   viewOrderDetails(id: number): void {
     this.isLoading = true;
     this.orderService.getOrderById(id).subscribe({
       next: (order) => {
         this.selectedOrder = order;
+        this.showModal = true; // Show the modal
         this.isLoading = false;
       },
       error: (err) => {
@@ -107,7 +111,8 @@ export class OrdersComponent implements OnInit {
   }
 }
 
-  closeDetails(): void {
+ closeDetails(): void {
+    this.showModal = false; // Hide the modal
     this.selectedOrder = null;
   }
 

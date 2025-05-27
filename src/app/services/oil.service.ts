@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { env } from 'process';
 import { environment } from '../../environments/environment.development';
 
 export enum OilType {
@@ -20,7 +19,7 @@ export interface Oil {
   providedIn: 'root'
 })
 export class OilService {
-  private apiUrl = environment.apiURL +'api/Oils'; 
+  private apiUrl = environment.apiURL+'/api/Oils'; 
 
   constructor(private http: HttpClient) {}
 

@@ -95,7 +95,8 @@ export class SubscripersComponent implements OnInit {
       this.subscriptionService.unsubscribe(email).subscribe({
         next: (message) => {
           this.successMessage = message;
-          this.loadSubscribers();
+          
+          this.subscribers = this.subscribers.filter(subscriber => subscriber !== email);
           this.isLoading = false;
         },
         error: (err) => {

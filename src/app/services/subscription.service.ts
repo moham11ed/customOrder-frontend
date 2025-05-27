@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { env } from 'process';
+import { environment } from '../../environments/environment.development';
 
 export interface Subscription {
   id: number;
@@ -13,8 +15,7 @@ export interface Subscription {
   providedIn: 'root'
 })
 export class SubscriptionService {
-  private apiUrl = '/api/Subscriptions';
-  private apiUrl2 = 'https://localhost:7176/api/Subscriptions';
+  private apiUrl = environment.apiURL+'/api/Subscriptions';
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +42,7 @@ export class SubscriptionService {
 
   // Unsubscribe
   unsubscribe(email: string): Observable<string> {
-    return this.http.delete<string>(`${this.apiUrl2}/${encodeURIComponent(email)}`).pipe(
+    return this.http.delete<string>(`${this.apiUrl}/${encodeURIComponent(email)}`).pipe(
       catchError(this.handleError)
     );
   }

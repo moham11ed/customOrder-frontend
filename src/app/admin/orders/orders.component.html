@@ -110,11 +110,12 @@
 </div>
 
 <!-- Order Details Modal -->
-<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true" *ngIf="selectedOrder">
+<!-- Order Details Modal -->
+<div class="modal fade" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Order #{{ selectedOrder.id }} Details</h5>
+        <h5 class="modal-title">Order #{{ selectedOrder?.id }} Details</h5>
         <button type="button" class="btn-close" (click)="closeDetails()" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -128,19 +129,25 @@
           <div class="row mb-4">
             <div class="col-md-6">
               <h6>Product Information</h6>
-              <p><strong>Type:</strong> {{ selectedOrder.productType }}</p>
-              <p><strong>Name:</strong> {{ selectedOrder.productName }}</p>
-              <p><strong>Quantity:</strong> {{ selectedOrder.quantity }}</p>
+              <p><strong>Type:</strong> {{ selectedOrder?.productType }}</p>
+              <p><strong>Name:</strong> {{ selectedOrder?.productName }}</p>
+              <p><strong>Quantity:</strong> {{ selectedOrder?.quantity }}</p>
+              <p><strong>Order Date:</strong> {{ selectedOrder?.createdAt | date:'medium' }}</p>
+              <p><strong>Status:</strong> {{ selectedOrder?.status }}</p>
             </div>
             <div class="col-md-6">
               <h6>Customization</h6>
-              <div *ngIf="selectedOrder.shapeImageUrl" class="mb-2">
+              <div *ngIf="selectedOrder?.shapeImageUrl" class="mb-2">
                 <strong>Shape:</strong>
-                <img [src]="selectedOrder.shapeImageUrl" class="img-thumbnail" style="max-height: 100px;">
+                <img [src]="selectedOrder?.shapeImageUrl" class="img-thumbnail" style="max-height: 100px;">
               </div>
-              <div *ngIf="selectedOrder.designUrl" class="mb-2">
+              <div *ngIf="selectedOrder?.designUrl" class="mb-2">
                 <strong>Design:</strong>
-                <img [src]="selectedOrder.designUrl" class="img-thumbnail" style="max-height: 100px;">
+                <img [src]="selectedOrder?.designUrl" class="img-thumbnail" style="max-height: 100px;">
+              </div>
+              <div *ngIf="selectedOrder?.customImage" class="mb-2">
+                <strong>Custom Image:</strong>
+                <img [src]="selectedOrder?.customImage" class="img-thumbnail" style="max-height: 100px;">
               </div>
             </div>
           </div>
@@ -148,14 +155,14 @@
           <div class="row">
             <div class="col-md-6">
               <h6>Customer Information</h6>
-              <p><strong>Name:</strong> {{ selectedOrder.clientName }}</p>
-              <p><strong>Email:</strong> {{ selectedOrder.clientEmail }}</p>
-              <p><strong>Phone:</strong> {{ selectedOrder.clientPhone }}</p>
+              <p><strong>Name:</strong> {{ selectedOrder?.clientName }}</p>
+              <p><strong>Email:</strong> {{ selectedOrder?.clientEmail }}</p>
+              <p><strong>Phone:</strong> {{ selectedOrder?.clientPhone }}</p>
             </div>
             <div class="col-md-6">
               <h6>Shipping Address</h6>
-              <p>{{ selectedOrder.clientStreet }}</p>
-              <p>{{ selectedOrder.clientCity }}, {{ selectedOrder.clientCountry }}</p>
+              <p>{{ selectedOrder?.street }}</p>
+              <p>{{ selectedOrder?.city }}, {{ selectedOrder?.country }}</p>
             </div>
           </div>
         </div>
