@@ -4,9 +4,9 @@
       <!-- Row 1: Invoice Header -->
       <div class="row mb-4">
         <div class="col-md-12">
-          <h1 class="display-4">INVOICE</h1>
-          <p class="text-muted">Order code #: {{orderData.id}}</p>
-          <p class="text-muted">Date: {{invoiceDate}}</p>
+          <h1 class="display-4">{{ 'INVOICE.TITLE' | translate }}</h1>
+          <p class="text-muted">{{ 'INVOICE.ORDER_CODE' | translate }} #: {{orderData.id}}</p>
+          <p class="text-muted">{{ 'INVOICE.DATE' | translate }}: {{invoiceDate}}</p>
         </div>
       </div>
 
@@ -14,15 +14,15 @@
       <div class="row mb-4">
         <div class="col-md-6">
           <div class="border p-3">
-            <h5>Bill To</h5>
+            <h5>{{ 'INVOICE.BILL_TO' | translate }}</h5>
             <p class="mb-1"><strong>{{orderData.clientInfo?.name}}</strong></p>
-            <p class="mb-1">Phone: {{orderData.clientInfo?.phone}}</p>
-            <p class="mb-0">Email: {{orderData.clientInfo?.email}}</p>
+            <p class="mb-1">{{ 'INVOICE.PHONE' | translate }}: {{orderData.clientInfo?.phone}}</p>
+            <p class="mb-0">{{ 'INVOICE.EMAIL' | translate }}: {{orderData.clientInfo?.email}}</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="border p-3">
-            <h5>Ship To</h5>
+            <h5>{{ 'INVOICE.SHIP_TO' | translate }}</h5>
             <p class="mb-1">{{orderData.clientInfo?.street}}</p>
             <p class="mb-1">{{orderData.clientInfo?.city}}, {{orderData.clientInfo?.country}}</p>
           </div>
@@ -36,10 +36,10 @@
             <table class="table table-bordered">
               <thead class="table-light">
                 <tr>
-                  <th>Item</th>
-                  <th>Description</th>
-                  <th class="text-end">Quantity</th>
-                  <th class="text-end">price</th>
+                  <th>{{ 'INVOICE.ITEM' | translate }}</th>
+                  <th>{{ 'INVOICE.DESCRIPTION' | translate }}</th>
+                  <th class="text-end">{{ 'INVOICE.QUANTITY' | translate }}</th>
+                  <th class="text-end">{{ 'INVOICE.PRICE' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -49,7 +49,7 @@
                     <strong>{{orderData.productName}}</strong>
                   </td>
                   <td class="text-end">{{orderData.quantity}}</td>
-                  <td class="text-end">$0.00</td>
+                  <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
                 </tr>
               </tbody>
             </table>
@@ -64,14 +64,14 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <div class="border p-3 h-100">
-                <h5>Notes</h5>
-                <p class="text-muted">Thank you for your business!</p>
+                <h5>{{ 'INVOICE.NOTES' | translate }}</h5>
+                <p class="text-muted">{{ 'INVOICE.THANK_YOU' | translate }}</p>
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <div class="border p-3 h-100">
-                <h5>Terms</h5>
-                <p class="text-muted">Payment due within 15 days. Late payments subject to fees.</p>
+                <h5>{{ 'INVOICE.TERMS' | translate }}</h5>
+                <p class="text-muted">{{ 'INVOICE.PAYMENT_TERMS' | translate }}</p>
               </div>
             </div>
           </div>
@@ -82,28 +82,28 @@
           <table class="table table-bordered">
             <tbody>
               <tr>
-                <td><strong>Subtotal</strong></td>
-                <td class="text-end">$0.00</td>
+                <td><strong>{{ 'INVOICE.SUBTOTAL' | translate }}</strong></td>
+                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
               </tr>
               <tr>
-                <td><strong>Tax</strong></td>
-                <td class="text-end">$0.00</td>
+                <td><strong>{{ 'INVOICE.TAX' | translate }}</strong></td>
+                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
               </tr>
               <tr>
-                <td><strong>Discount</strong></td>
-                <td class="text-end">$0.00</td>
+                <td><strong>{{ 'INVOICE.DISCOUNT' | translate }}</strong></td>
+                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
               </tr>
               <tr class="table-active">
-                <td><strong>Total</strong></td>
-                <td class="text-end">$0.00</td>
+                <td><strong>{{ 'INVOICE.TOTAL' | translate }}</strong></td>
+                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
               </tr>
               <tr>
-                <td><strong>Amount Paid</strong></td>
-                <td class="text-end">$0.00</td>
+                <td><strong>{{ 'INVOICE.AMOUNT_PAID' | translate }}</strong></td>
+                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
               </tr>
               <tr class="table-primary">
-                <td><strong>Balance Due</strong></td>
-                <td class="text-end">$0.00</td>
+                <td><strong>{{ 'INVOICE.BALANCE_DUE' | translate }}</strong></td>
+                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
               </tr>
             </tbody>
           </table>
@@ -114,11 +114,11 @@
 
   <!-- Row 5: Print Button -->
   <div class="text-center mt-3 d-print-none">
-  <button class="btn btn-primary me-3" (click)="printInvoice()">
-    <i class="bi bi-printer me-2"></i>Print Invoice
-  </button>
-  <button class="btn btn-success" (click)="makeNewOrder()">
-    <i class="bi bi-plus-circle me-2"></i>Make New Order
-  </button>
-</div>
+    <button class="btn btn-primary me-3" (click)="printInvoice()">
+      <i class="bi bi-printer me-2"></i>{{ 'INVOICE.PRINT_INVOICE' | translate }}
+    </button>
+    <button class="btn btn-success" (click)="makeNewOrder()">
+      <i class="bi bi-plus-circle me-2"></i>{{ 'INVOICE.NEW_ORDER' | translate }}
+    </button>
+  </div>
 </div>

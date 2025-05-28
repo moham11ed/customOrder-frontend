@@ -31,7 +31,7 @@
     "RETRY": "إعادة المحاولة",
     "SELECT_X_OILS": "اختر 3 زيوت",
     "SELECTED": "محدد",
-    "SELECTION_CONFIRMATION": "!لقد اخترت 3 زيوت",
+    "SELECTION_CONFIRMATION": "لقد اخترت الزيوت",
     "YOUR_SELECTION": "اختياراتك"
   },
   "SHAPE": {
@@ -40,9 +40,14 @@
     "SELECTED_CONFIRMATION": "تم اختيار الشكل"
   },
   "DESIGN": {
-    "TITLE": "اختر تصميم المنتج",
-    "SELECT_PROMPT": "اختر تصميمًا",
-    "SELECTED_CONFIRMATION": "تم اختيار التصميم"
+    "SELECT_TITLE": "اختر تصميمك",
+    "UPLOAD_NEW": "رفع صورة جديدة",
+    "CHOOSE_EXISTING": "اختر من الموجودة",
+    "UPLOAD_INSTRUCTIONS": "الرجاء رفع صورتك المخصصة (JPEG, PNG)",
+    "CHOOSE_FILE": "اختر ملف",
+    "USE_THIS_IMAGE": "استخدم هذه الصورة",
+    "SELECT_FROM_COLLECTION": "الرجاء اختيار تصميم من مجموعتنا",
+    "DESIGN_SELECTED": "تم اختيار التصميم!"
   },
    "NAME": {
     "TITLE": "اختر اسم المنتج",
@@ -62,5 +67,78 @@
     "COUNTRY": "الدولة",
     "CITY": "المدينة",
     "STREET": "عنوان الشارع"
+  },
+  "CONFIRM_DESIGN": {
+    "TITLE": "تأكيد التصميم الخاص بك",
+    "LOADING": "جاري تحميل التصميم...",
+    "YOUR_DESIGN": "تصميمك المخصص",
+    "NO_DESIGN": "لا يوجد تصميم متاح",
+    "CONFIRMATION": "تصميمك يبدو رائعًا! تابع إلى الخطوة التالية.",
+    "ALT_DESIGN": "معاينة التصميم المخصص"
+  },
+  "ORDER_SUMMARY": {
+    "TITLE": "ملخص الطلب",
+    "PRODUCT_INFO": "معلومات المنتج",
+    "ORDER_ID": "رقم الطلب",
+    "PRODUCT_TYPE": "نوع المنتج",
+    "PRODUCT_NAME": "اسم المنتج",
+    "QUANTITY": "الكمية",
+    "TOTAL_PRICE": "السعر الإجمالي",
+    "SELECTED_OILS": "الزيوت المختارة",
+    "SHAPE_DETAILS": "تفاصيل الشكل",
+    "SHAPE_ALT": "الشكل المختار",
+    "DESIGN_DETAILS": "تفاصيل التصميم",
+    "DESIGN_ALT": "التصميم المختار",
+    "CUSTOM_IMAGE": "صورة مخصصة",
+    "CUSTOM_IMAGE_ALT": "صورة مخصصة",
+    "CLIENT_INFO": "معلومات العميل",
+    "NAME": "الاسم",
+    "EMAIL": "البريد الإلكتروني",
+    "PHONE": "الهاتف",
+    "COUNTRY": "الدولة",
+    "CITY": "المدينة",
+    "STREET": "الشارع",
+    "PRINT": "طباعة",
+    "SUBMIT_ORDER": "إرسال الطلب"
+  },
+  "INVOICE": {
+    "TITLE": "فاتورة",
+    "ORDER_CODE": "رمز الطلب",
+    "DATE": "التاريخ",
+    "BILL_TO": "فاتورة إلى",
+    "SHIP_TO": "شحن إلى",
+    "PHONE": "الهاتف",
+    "EMAIL": "البريد الإلكتروني",
+    "ITEM": "العنصر",
+    "DESCRIPTION": "الوصف",
+    "QUANTITY": "الكمية",
+    "PRICE": "السعر",
+    "CURRENCY": "ر.س",
+    "NOTES": "ملاحظات",
+    "THANK_YOU": "شكراً لتعاملك معنا!",
+    "TERMS": "الشروط",
+    "PAYMENT_TERMS": "سوف تستلم ايميل به السعر ووقت التسديد خلال 24 ساعه",
+    "SUBTOTAL": "المجموع الفرعي",
+    "TAX": "الضريبة",
+    "DISCOUNT": "الخصم",
+    "TOTAL": "المجموع",
+    "AMOUNT_PAID": "المبلغ المدفوع",
+    "BALANCE_DUE": "الرصيد المستحق",
+    "PRINT_INVOICE": "طباعة الفاتورة",
+    "NEW_ORDER": "إنشاء طلب جديد"
+  },
+   "TRACK_ORDER": {
+    "TITLE": "تتبع طلبك",
+    "PLACEHOLDER": "أدخل رقم الطلب",
+    "TRACK_BUTTON": "تتبع الطلب",
+    "STATUS_HEADER": "حالة الطلب",
+    "CURRENT_STATUS": "الحالة الحالية",
+    "ORDER_ID": "رقم الطلب",
+    "STATUSES": {
+      "Received": "تم الاستلام",
+      "Processing": "قيد المعالجة",
+      "Completed": "مكتمل",
+      "Cancelled": "ملغى"
+    }
   }
 }

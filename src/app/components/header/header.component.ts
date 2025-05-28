@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -18,9 +18,14 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   ]
 })
 export class HeaderComponent {
-  constructor(public translate: TranslateService) {}
+
+  constructor(public translate: TranslateService, private router: Router) {}
 
   switchLanguage(language: string) {
     this.translate.use(language);
   }
+
+  onDoubleClick() {
+  this.router.navigate(['/admin']);
+}
 }

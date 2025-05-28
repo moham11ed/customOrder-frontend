@@ -9,14 +9,7 @@ export interface ShapeWithDesign {
   shapeId: number;
   designId: number;
   imageUrl: string;
-  bottleDesign: {
-    id: number;
-    imageUrl: string;
-  };
-  logoDesign: {
-    id: number;
-    imageUrl: string;
-  };
+ 
 }
 
 @Injectable({

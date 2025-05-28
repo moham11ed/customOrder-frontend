@@ -39,8 +39,7 @@ export class ShapeWithDesignComponent implements OnInit {
     shapeId: 0,
     designId: 0,
     imageUrl: '',
-    bottleDesign: { id: 0, imageUrl: '' },
-    logoDesign: { id: 0, imageUrl: '' }
+    
   };
 
   constructor(private designService: ConfirmDesignService) {}
@@ -82,8 +81,7 @@ export class ShapeWithDesignComponent implements OnInit {
       shapeId: 0,
       designId: 0,
       imageUrl: '',
-      bottleDesign: { id: 0, imageUrl: '' },
-      logoDesign: { id: 0, imageUrl: '' }
+      
     };
   }
 }

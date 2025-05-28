@@ -1,8 +1,8 @@
 <nav class="d-flex justify-content-between align-items-center p-3">
   <!-- Logo -->
-  <div class="logo">
-    {{ 'T.Sitename' | translate }}
-  </div>
+ <div class="logo" (dblclick)="onDoubleClick()">
+  {{ 'T.Sitename' | translate }}
+</div>
 
   <!-- Navigation Links -->
   <div class="nav-links d-flex justify-content-center">

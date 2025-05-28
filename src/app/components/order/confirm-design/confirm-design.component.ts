@@ -17,7 +17,7 @@ import { ConfirmDesignService } from '../../../services/confirmdesign.service';
 })
 export class ConfirmDesignComponent implements OnInit {
   allImages: any[] = [];
-  filteredImage: any; // To store the single matching image
+  filteredImage: any; 
   isLoading = true;
   error: string | null = null;
   selectionComplete = false;

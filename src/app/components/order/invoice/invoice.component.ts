@@ -3,10 +3,15 @@ import { OrderService } from '../../../services/order.service';
 import { Order } from '../../../services/order.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
+  imports: [
+    
+    TranslateModule
+  ],
   styleUrls: [],
   providers: [DatePipe]
 })

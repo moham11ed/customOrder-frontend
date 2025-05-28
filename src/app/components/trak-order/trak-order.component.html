@@ -5,7 +5,7 @@
       <div class="card border-0 shadow-lg rounded-4">
         <div class="card-body p-4">
           <!-- Title -->
-          <h2 class="text-center mb-4">{{ "T.TrackOrder" | translate }}</h2>
+          <h2 class="text-center mb-4">{{ "TRACK_ORDER.TITLE" | translate }}</h2>
           
           <!-- Input field with button -->
           <div class="mb-4">
@@ -14,7 +14,7 @@
                 type="text" 
                 [(ngModel)]="userInput" 
                 class="form-control" 
-                [placeholder]="'T.EnterOrderID' | translate"
+                [placeholder]="'TRACK_ORDER.PLACEHOLDER' | translate"
               >
               <button 
                 class="btn btn-primary" 
@@ -22,7 +22,7 @@
                 (click)="showData()"
                 [disabled]="isLoading"
               >
-                <span *ngIf="!isLoading">{{ "T.Tracking" | translate }}</span>
+                <span *ngIf="!isLoading">{{ "TRACK_ORDER.TRACK_BUTTON" | translate }}</span>
                 <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               </button>
             </div>
@@ -30,7 +30,7 @@
 
           <!-- Error message -->
           <div *ngIf="errorMessage" class="alert alert-danger text-center">
-            {{ errorMessage }}
+            {{ errorMessage | translate }}
           </div>
 
           <!-- Order status display area -->
@@ -41,14 +41,15 @@
               'alert-success': orderStatus === 'Completed',
               'alert-danger': orderStatus === 'Cancelled'
             }">
-              <h4 class="mb-3">{{ "T.OrderStatus" | translate }}</h4>
+              <h4 class="mb-3">{{ "TRACK_ORDER.STATUS_HEADER" | translate }}</h4>
               <div class="fw-bold">
-                <strong>{{ "T.Status" | translate }}:</strong> {{ orderStatus }}
+                <strong>{{ "TRACK_ORDER.CURRENT_STATUS" | translate }}:</strong> 
+                {{ "TRACK_ORDER." + orderStatus | translate }}
               </div>
               
               <!-- Order details -->
               <div *ngIf="userInput" class="mt-3">
-                <strong>{{ "T.OrderID" | translate }}:</strong> {{ userInput }}
+                <strong>{{ "TRACK_ORDER.ORDER_ID" | translate }}:</strong> {{ userInput }}
               </div>
             </div>
           </div>

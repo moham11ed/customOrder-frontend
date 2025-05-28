@@ -44,14 +44,12 @@
         <tr *ngFor="let combo of combinations">
           <td>{{ combo.id }}</td>
           <td>
-            <div *ngIf="combo.bottleDesign">
-              <img [src]="combo.bottleDesign.imageUrl" alt="Shape" class="img-thumbnail" style="max-height: 100px;">
+            <div *ngIf="combo.shapeId">
               <div>ID: {{ combo.shapeId }}</div>
             </div>
           </td>
           <td>
-            <div *ngIf="combo.logoDesign">
-              <img [src]="combo.logoDesign.imageUrl" alt="Design" class="img-thumbnail" style="max-height: 100px;">
+            <div *ngIf="combo.shapeId">
               <div>ID: {{ combo.designId }}</div>
             </div>
           </td>

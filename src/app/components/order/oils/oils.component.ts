@@ -25,6 +25,8 @@ export class OilsComponent implements OnInit {
   error: string | null = null;
   selectionComplete = false;
   productTypeId: number | undefined;
+  minSelection = 1; // Minimum number of oils required
+  maxSelection = 3; // Maximum number of oils allowed
 
   constructor(
     private router: Router,
@@ -38,7 +40,6 @@ export class OilsComponent implements OnInit {
 
   getProductTypeAndFetchOils(): void {
     this.isLoading = true;
-    // Get the current snapshot instead of subscribing to the observable
     const orderData = this.orderService.getCurrentOrder();
     this.productTypeId = orderData.productTypeId;
     
@@ -46,7 +47,6 @@ export class OilsComponent implements OnInit {
       console.warn('Product type ID is not available');
       this.error = 'Product type not selected. Please select a product type.';
       this.isLoading = false;
-      // Optionally redirect back to category selection
       this.router.navigate(['/']);
       return;
     }
@@ -83,12 +83,13 @@ export class OilsComponent implements OnInit {
     if (index > -1) {
       this.selectedOils.splice(index, 1);
     } else {
-      if (this.selectedOils.length < 3) {
+      if (this.selectedOils.length < this.maxSelection) {
         this.selectedOils.push(oil);
       }
     }
 
-    this.selectionComplete = this.selectedOils.length === 3;
+    // Update completion status based on min selection
+    this.selectionComplete = this.selectedOils.length >= this.minSelection;
   }
 
   isSelected(oil: Oil): boolean {
@@ -96,8 +97,13 @@ export class OilsComponent implements OnInit {
   }
 
   goToNextStep() {
-    this.orderService.updateOrderData({ selectedOils: this.selectedOils });
-    this.router.navigate(['/shape']);
+    if (this.selectedOils.length >= this.minSelection) {
+      this.orderService.updateOrderData({ selectedOils: this.selectedOils });
+      this.router.navigate(['/shape']);
+    } else {
+      // Show error or alert that at least 1 oil must be selected
+      this.error = `Please select at least ${this.minSelection} oil(s).`;
+    }
   }
 
   goToPreviousStep() {

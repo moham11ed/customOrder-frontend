@@ -32,7 +32,7 @@
     "RETRY": "Retry",
     "SELECT_X_OILS": "Select 3 oils",
     "SELECTED": "selected",
-    "SELECTION_CONFIRMATION": "You've selected 3 oils!",
+    "SELECTION_CONFIRMATION": "The oils have been selected",
     "YOUR_SELECTION": "Your Selection"
   },
   "SHAPE": {
@@ -40,11 +40,16 @@
     "SELECT_PROMPT": "Select a shape",
     "SELECTED_CONFIRMATION": "Shape selected"
   },
-  "DESIGN": {
-    "TITLE": "Select Product Design",
-    "SELECT_PROMPT": "Select a design",
-    "SELECTED_CONFIRMATION": "Design selected"
-    },
+ "DESIGN": {
+    "SELECT_TITLE": "Select Your Design",
+    "UPLOAD_NEW": "Upload New Image",
+    "CHOOSE_EXISTING": "Choose Existing",
+    "UPLOAD_INSTRUCTIONS": "Please upload your custom image (JPEG, PNG)",
+    "CHOOSE_FILE": "Choose File",
+    "USE_THIS_IMAGE": "Use This Image",
+    "SELECT_FROM_COLLECTION": "Please select a design from our collection",
+    "DESIGN_SELECTED": "Design selected!"
+  },
      "NAME": {
     "TITLE": "Choose Product Name",
     "SELECT_PROMPT": "Select a product name",
@@ -63,7 +68,81 @@
     "COUNTRY": "Country",
     "CITY": "City",
     "STREET": "Street Address"
+  },
+   "CONFIRM_DESIGN": {
+    "TITLE": "Confirm Your Design",
+    "LOADING": "Loading your design...",
+    "YOUR_DESIGN": "Your custom design",
+    "NO_DESIGN": "No design available",
+    "CONFIRMATION": "Your design looks great! Proceed to the next step.",
+    "ALT_DESIGN": "Your custom design preview"
+  },
+  "ORDER_SUMMARY": {
+    "TITLE": "Order Summary",
+    "PRODUCT_INFO": "Product Information",
+    "ORDER_ID": "Order ID",
+    "PRODUCT_TYPE": "Product Type",
+    "PRODUCT_NAME": "Product Name",
+    "QUANTITY": "Quantity",
+    "TOTAL_PRICE": "Total Price",
+    "SELECTED_OILS": "Selected Oils",
+    "SHAPE_DETAILS": "Shape Details",
+    "SHAPE_ALT": "Selected Shape",
+    "DESIGN_DETAILS": "Design Details",
+    "DESIGN_ALT": "Selected Design",
+    "CUSTOM_IMAGE": "Custom Image",
+    "CUSTOM_IMAGE_ALT": "Custom Image",
+    "CLIENT_INFO": "Client Information",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "PHONE": "Phone",
+    "COUNTRY": "Country",
+    "CITY": "City",
+    "STREET": "Street",
+    "PRINT": "Print",
+    "SUBMIT_ORDER": "Submit Order"
+  },
+   "INVOICE": {
+    "TITLE": "INVOICE",
+    "ORDER_CODE": "Order code",
+    "DATE": "Date",
+    "BILL_TO": "Bill To",
+    "SHIP_TO": "Ship To",
+    "PHONE": "Phone",
+    "EMAIL": "Email",
+    "ITEM": "Item",
+    "DESCRIPTION": "Description",
+    "QUANTITY": "Quantity",
+    "PRICE": "Price",
+    "CURRENCY": "$",
+    "NOTES": "Notes",
+    "THANK_YOU": "Thank you for your business!",
+    "TERMS": "Terms",
+    "PAYMENT_TERMS": "You will receive an email with the price and payment deadline within 24 hours",
+    "SUBTOTAL": "Subtotal",
+    "TAX": "Tax",
+    "DISCOUNT": "Discount",
+    "TOTAL": "Total",
+    "AMOUNT_PAID": "Amount Paid",
+    "BALANCE_DUE": "Balance Due",
+    "PRINT_INVOICE": "Print Invoice",
+    "NEW_ORDER": "Make New Order"
+  },
+  "TRACK_ORDER": {
+    "TITLE": "Track Your Order",
+    "PLACEHOLDER": "Enter your order ID",
+    "TRACK_BUTTON": "Track Order",
+    "STATUS_HEADER": "Order Status",
+    "CURRENT_STATUS": "Current Status",
+    "ORDER_ID": "Order ID",
+    "STATUSES": {
+      "Received": "Received",
+      "Processing": "Processing",
+      "Completed": "Completed",
+      "Cancelled": "Cancelled"
+    }
   }
+  
   
   
 }

@@ -1,31 +1,31 @@
 <div class="container mt-4">
   <div class="card">
     <div class="card-header bg-primary text-white">
-      <h2 class="mb-0">Order Summary</h2>
+      <h2 class="mb-0">{{ 'ORDER_SUMMARY.TITLE' | translate }}</h2>
     </div>
     
     <div class="card-body">
       <!-- Product Information -->
       <div class="mb-4 p-3 border rounded" *ngIf="orderData.productType">
-        <h3 class="card-title">Product Information</h3>
+        <h3 class="card-title">{{ 'ORDER_SUMMARY.PRODUCT_INFO' | translate }}</h3>
         <div class="row">
           <div class="col-md-6">
             <div class="border-bottom pb-2 mb-2" *ngIf="orderData.id">
-              <p class="mb-0"><strong>Order ID:</strong> {{ orderData.id }}</p>
+              <p class="mb-0"><strong>{{ 'ORDER_SUMMARY.ORDER_ID' | translate }}:</strong> {{ orderData.id }}</p>
             </div>
-            <p><strong>Product Type:</strong> {{ orderData.productType }}</p>
-            <p><strong>Product Name:</strong> {{ orderData.productName || 'Not specified' }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.PRODUCT_TYPE' | translate }}:</strong> {{ orderData.productType }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.PRODUCT_NAME' | translate }}:</strong> {{ orderData.productName || ('COMMON.NOT_SPECIFIED' | translate) }}</p>
           </div>
           <div class="col-md-6">
-            <p><strong>Quantity:</strong> {{ orderData.quantity || 0 }}</p>
-            <p *ngIf="orderData.totalPrice"><strong>Total Price:</strong> {{ orderData.totalPrice | currency }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.QUANTITY' | translate }}:</strong> {{ orderData.quantity || 0 }}</p>
+            <p *ngIf="orderData.totalPrice"><strong>{{ 'ORDER_SUMMARY.TOTAL_PRICE' | translate }}:</strong> {{ orderData.totalPrice | currency }}</p>
           </div>
         </div>
       </div>
 
       <!-- Selected Oils -->
       <div class="mb-4 p-3 border rounded" *ngIf="orderData.selectedOils && orderData.selectedOils.length > 0">
-        <h3 class="card-title">Selected Oils</h3>
+        <h3 class="card-title">{{ 'ORDER_SUMMARY.SELECTED_OILS' | translate }}</h3>
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let oil of orderData.selectedOils">
             {{ oil.name || oil.id }}
@@ -40,11 +40,11 @@
         <div class="col-md-4 mb-3" *ngIf="orderData.shapeId">
           <div class="card h-100">
             <div class="card-header">
-              <h4 class="card-title mb-0">Shape Details</h4>
+              <h4 class="card-title mb-0">{{ 'ORDER_SUMMARY.SHAPE_DETAILS' | translate }}</h4>
             </div>
             <div class="card-body text-center">
               <img *ngIf="orderData.shapeImageUrl" [src]="orderData.shapeImageUrl" 
-                   alt="Selected Shape" class="img-fluid rounded" style="max-height: 200px;">
+                   [alt]="'ORDER_SUMMARY.SHAPE_ALT' | translate" class="img-fluid rounded" style="max-height: 200px;">
               <p class="mt-2" *ngIf="orderData.shapeName"><strong>{{ orderData.shapeName }}</strong></p>
             </div>
           </div>
@@ -54,11 +54,11 @@
         <div class="col-md-4 mb-3" *ngIf="orderData.designId">
           <div class="card h-100">
             <div class="card-header">
-              <h4 class="card-title mb-0">Design Details</h4>
+              <h4 class="card-title mb-0">{{ 'ORDER_SUMMARY.DESIGN_DETAILS' | translate }}</h4>
             </div>
             <div class="card-body text-center">
               <img *ngIf="orderData.designUrl" [src]="orderData.designUrl" 
-                   alt="Selected Design" class="img-fluid rounded" style="max-height: 200px;">
+                   [alt]="'ORDER_SUMMARY.DESIGN_ALT' | translate" class="img-fluid rounded" style="max-height: 200px;">
               <p class="mt-2" *ngIf="orderData.designName"><strong>{{ orderData.designName }}</strong></p>
             </div>
           </div>
@@ -68,11 +68,11 @@
         <div class="col-md-4 mb-3" *ngIf="orderData.customImage">
           <div class="card h-100">
             <div class="card-header">
-              <h4 class="card-title mb-0">Custom Image</h4>
+              <h4 class="card-title mb-0">{{ 'ORDER_SUMMARY.CUSTOM_IMAGE' | translate }}</h4>
             </div>
             <div class="card-body text-center">
               <img *ngIf="orderData.customImage" [src]="orderData.customImage" 
-                   alt="Custom Image" class="img-fluid rounded" style="max-height: 200px;">
+                   [alt]="'ORDER_SUMMARY.CUSTOM_IMAGE_ALT' | translate" class="img-fluid rounded" style="max-height: 200px;">
             </div>
           </div>
         </div>
@@ -80,42 +80,42 @@
 
       <!-- Client Information -->
       <div class="mb-4 p-3 border rounded" *ngIf="orderData.clientInfo">
-        <h3 class="card-title">Client Information</h3>
+        <h3 class="card-title">{{ 'ORDER_SUMMARY.CLIENT_INFO' | translate }}</h3>
         <div class="row">
           <div class="col-md-6">
-            <p><strong>Name:</strong> {{ orderData.clientInfo.name }}</p>
-            <p><strong>Email:</strong> {{ orderData.clientInfo.email }}</p>
-            <p><strong>Phone:</strong> {{ orderData.clientInfo.phone }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.NAME' | translate }}:</strong> {{ orderData.clientInfo.name }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.EMAIL' | translate }}:</strong> {{ orderData.clientInfo.email }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.PHONE' | translate }}:</strong> {{ orderData.clientInfo.phone }}</p>
           </div>
           <div class="col-md-6">
-            <p><strong>Country:</strong> {{ orderData.clientInfo.country }}</p>
-            <p><strong>City:</strong> {{ orderData.clientInfo.city }}</p>
-            <p><strong>Street:</strong> {{ orderData.clientInfo.street }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.COUNTRY' | translate }}:</strong> {{ orderData.clientInfo.country }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.CITY' | translate }}:</strong> {{ orderData.clientInfo.city }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.STREET' | translate }}:</strong> {{ orderData.clientInfo.street }}</p>
           </div>
         </div>
       </div>
 
       <!-- Error Message -->
       <div class="alert alert-danger" *ngIf="errorMessage">
-        {{ errorMessage }}
+        {{ errorMessage | translate }}
       </div>
     </div>
 
     <div class="card-footer d-flex justify-content-between">
       <button (click)="goBack()" class="btn btn-outline-secondary" [disabled]="isSubmitting">
-        <i class="bi bi-arrow-left me-2"></i>Back to Client Info
+        <i class="bi bi-arrow-left me-2"></i>{{ 'T.BACK' | translate }}
       </button>
       <div>
         <button (click)="printOrder()" class="btn btn-info me-2" [disabled]="isSubmitting">
-          <i class="bi bi-printer me-2"></i>Print
+          <i class="bi bi-printer me-2"></i>{{ 'ORDER_SUMMARY.PRINT' | translate }}
         </button>
-        <button (click)="submitOrder()" class="btn btn-success" [disabled]="isSubmitting">
+        <button (click)="submitOrder()" class="btn btn-Outline-success" [disabled]="isSubmitting">
           <span *ngIf="!isSubmitting">
-            <i class="bi bi-check-circle me-2"></i>Submit Order
+            <i class="bi bi-check-circle me-2"></i>{{ 'ORDER_SUMMARY.SUBMIT_ORDER' | translate }}
           </span>
           <span *ngIf="isSubmitting">
             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-            Processing...
+            {{ 'COMMON.PROCESSING' | translate }}
           </span>
         </button>
       </div>

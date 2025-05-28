@@ -3,7 +3,7 @@
     <div class="col-12 col-md-8 col-lg-6">
       <div class="card border-0 shadow-lg rounded-4">
         <div class="card-body p-4">
-          <h2 class="text-center mb-4">Select Your Design</h2>
+          <h2 class="text-center mb-4">{{ 'DESIGN.SELECT_TITLE' | translate }}</h2>
 
           <!-- Toggle buttons -->
           <div class="d-flex justify-content-center mb-4">
@@ -11,12 +11,12 @@
               <button type="button" class="btn btn-outline-primary rounded-2" 
                       [class.active]="!showExistingDesigns" 
                       (click)="toggleView(false)">
-                Upload New Image
+                {{ 'DESIGN.UPLOAD_NEW' | translate }}
               </button>
               <button type="button" class="btn btn-outline-primary rounded-2" 
                       [class.active]="showExistingDesigns" 
                       (click)="toggleView(true)">
-                Choose Existing
+                {{ 'DESIGN.CHOOSE_EXISTING' | translate }}
               </button>
             </div>
           </div>
@@ -24,7 +24,7 @@
           <!-- Upload section -->
           <div *ngIf="!showExistingDesigns" class="mb-4">
             <div class="alert alert-info text-center mb-4">
-              Please upload your custom image (JPEG, PNG)
+              {{ 'DESIGN.UPLOAD_INSTRUCTIONS' | translate }}
             </div>
 
             <div class="text-center">
@@ -34,7 +34,7 @@
                        accept="image/*" (change)="onFileSelected($event)">
                 <label for="fileUpload" class="btn btn-primary mb-2">
                   <i class="bi bi-upload me-2"></i>
-                  Choose File
+                  {{ 'DESIGN.CHOOSE_FILE' | translate }}
                 </label>
                 <div *ngIf="selectedFile" class="mt-2 d-flex align-items-center justify-content-center">
                   <span class="text-muted">{{ selectedFile.name }}</span>
@@ -50,7 +50,7 @@
                   <img [src]="imagePreview" class="card-img-top img-fluid" alt="Preview">
                   <div class="card-body text-center">
                     <button class="btn btn-success" (click)="uploadImage()">
-                      Use This Image
+                      {{ 'DESIGN.USE_THIS_IMAGE' | translate }}
                     </button>
                   </div>
                 </div>
@@ -61,9 +61,9 @@
           <!-- Existing designs -->
           <div *ngIf="showExistingDesigns" class="mb-4">
             <div class="alert alert-info text-center mb-4">
-              <span *ngIf="!selectedDesignId">Please select a design from our collection</span>
+              <span *ngIf="!selectedDesignId">{{ 'DESIGN.SELECT_FROM_COLLECTION' | translate }}</span>
               <span *ngIf="selectedDesignId" class="fw-bold text-success">
-                Design selected!
+                {{ 'DESIGN.DESIGN_SELECTED' | translate }}
               </span>
             </div>
 
@@ -86,11 +86,11 @@
           <!-- Navigation -->
           <div class="d-flex justify-content-between mt-4">
             <button class="btn btn-outline-secondary" (click)="goToPreviousStep()">
-              Back
+              {{ 'T.BACK' | translate }}
             </button>
             <button class="btn btn-outline-primary" (click)="goToNextStep()" 
                     [disabled]="!selectedDesignId && !uploadedImageUrl">
-              Next
+              {{ 'T.NEXT' | translate }}
             </button>
           </div>
         </div>

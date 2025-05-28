@@ -30,7 +30,7 @@
     "RETRY": "Tentar novamente",
     "SELECT_X_OILS": "Selecione 3 óleos",
     "SELECTED": "selecionado",
-    "SELECTION_CONFIRMATION": "Você selecionou 3 óleos!",
+    "SELECTION_CONFIRMATION": "Os óleos foram selecionados",
     "YOUR_SELECTION": "Sua Seleção",
     "TITLE": "Ingredientes do Produto"
   },
@@ -39,10 +39,15 @@
     "SELECT_PROMPT": "Selecione um formato",
     "SELECTED_CONFIRMATION": "Formato selecionado"
   },
-    "DESIGN": {
-    "TITLE": "Selecione o Design do Produto",
-    "SELECT_PROMPT": "Selecione um design",
-    "SELECTED_CONFIRMATION": "Design selecionado"
+     "DESIGN": {
+    "SELECT_TITLE": "Selecione Seu Design",
+    "UPLOAD_NEW": "Enviar Nova Imagem",
+    "CHOOSE_EXISTING": "Escolher Existente",
+    "UPLOAD_INSTRUCTIONS": "Por favor, envie sua imagem personalizada (JPEG, PNG)",
+    "CHOOSE_FILE": "Escolher Arquivo",
+    "USE_THIS_IMAGE": "Usar Esta Imagem",
+    "SELECT_FROM_COLLECTION": "Por favor, selecione um design da nossa coleção",
+    "DESIGN_SELECTED": "Design selecionado!"
   },
    "NAME": {
     "TITLE": "Escolha o Nome do Produto",
@@ -62,5 +67,78 @@
     "COUNTRY": "País",
     "CITY": "Cidade",
     "STREET": "Endereço"
+  },
+  "CONFIRM_DESIGN": {
+    "TITLE": "Confirme Seu Design",
+    "LOADING": "Carregando seu design...",
+    "YOUR_DESIGN": "Seu design personalizado",
+    "NO_DESIGN": "Nenhum design disponível",
+    "CONFIRMATION": "Seu design está ótimo! Continue para o próximo passo.",
+    "ALT_DESIGN": "Visualização do seu design personalizado"
+  },
+  "ORDER_SUMMARY": {
+    "TITLE": "Resumo do Pedido",
+    "PRODUCT_INFO": "Informações do Produto",
+    "ORDER_ID": "ID do Pedido",
+    "PRODUCT_TYPE": "Tipo de Produto",
+    "PRODUCT_NAME": "Nome do Produto",
+    "QUANTITY": "Quantidade",
+    "TOTAL_PRICE": "Preço Total",
+    "SELECTED_OILS": "Óleos Selecionados",
+    "SHAPE_DETAILS": "Detalhes da Forma",
+    "SHAPE_ALT": "Forma Selecionada",
+    "DESIGN_DETAILS": "Detalhes do Design",
+    "DESIGN_ALT": "Design Selecionado",
+    "CUSTOM_IMAGE": "Imagem Personalizada",
+    "CUSTOM_IMAGE_ALT": "Imagem Personalizada",
+    "CLIENT_INFO": "Informações do Cliente",
+    "NAME": "Nome",
+    "EMAIL": "Email",
+    "PHONE": "Telefone",
+    "COUNTRY": "País",
+    "CITY": "Cidade",
+    "STREET": "Rua",
+    "PRINT": "Imprimir",
+    "SUBMIT_ORDER": "Enviar Pedido"
+  },
+  "INVOICE": {
+    "TITLE": "FATURA",
+    "ORDER_CODE": "Código do pedido",
+    "DATE": "Data",
+    "BILL_TO": "Cobrança para",
+    "SHIP_TO": "Enviar para",
+    "PHONE": "Telefone",
+    "EMAIL": "E-mail",
+    "ITEM": "Item",
+    "DESCRIPTION": "Descrição",
+    "QUANTITY": "Quantidade",
+    "PRICE": "Preço",
+    "CURRENCY": "R$",
+    "NOTES": "Notas",
+    "THANK_YOU": "Obrigado pelo seu negócio!",
+    "TERMS": "Termos",
+    "PAYMENT_TERMS": "Você receberá um e-mail com o preço e o prazo para pagamento dentro de 24 horas.",
+    "SUBTOTAL": "Subtotal",
+    "TAX": "Imposto",
+    "DISCOUNT": "Desconto",
+    "TOTAL": "Total",
+    "AMOUNT_PAID": "Valor Pago",
+    "BALANCE_DUE": "Saldo Devedor",
+    "PRINT_INVOICE": "Imprimir Fatura",
+    "NEW_ORDER": "Fazer Novo Pedido"
+  },
+  "TRACK_ORDER": {
+    "TITLE": "Rastrear Pedido",
+    "PLACEHOLDER": "Digite o número do pedido",
+    "TRACK_BUTTON": "Rastrear Pedido",
+    "STATUS_HEADER": "Status do Pedido",
+    "CURRENT_STATUS": "Status Atual",
+    "ORDER_ID": "Número do Pedido",
+    "STATUSES": {
+      "Received": "Recebido",
+      "Processing": "Processando",
+      "Completed": "Concluído",
+      "Cancelled": "Cancelado"
+    }
   }
 }
