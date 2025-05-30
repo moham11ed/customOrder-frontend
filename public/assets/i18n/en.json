@@ -67,7 +67,8 @@
     "PHONE": "Phone Number",
     "COUNTRY": "Country",
     "CITY": "City",
-    "STREET": "Street Address"
+    "STREET": "Street Address",
+    "ZIP": "ZIP Code"
   },
    "CONFIRM_DESIGN": {
     "TITLE": "Confirm Your Design",
@@ -116,7 +117,7 @@
     "PRICE": "Price",
     "CURRENCY": "$",
     "NOTES": "Notes",
-    "THANK_YOU": "Thank you for your business!",
+    "THANK_YOU": "Door-to-door delivery",
     "TERMS": "Terms",
     "PAYMENT_TERMS": "You will receive an email with the price and payment deadline within 24 hours",
     "SUBTOTAL": "Subtotal",

@@ -66,7 +66,8 @@
     "PHONE": "Telefone",
     "COUNTRY": "País",
     "CITY": "Cidade",
-    "STREET": "Endereço"
+    "STREET": "Endereço",
+    "ZIP": "CEP"
   },
   "CONFIRM_DESIGN": {
     "TITLE": "Confirme Seu Design",
@@ -115,7 +116,7 @@
     "PRICE": "Preço",
     "CURRENCY": "R$",
     "NOTES": "Notas",
-    "THANK_YOU": "Obrigado pelo seu negócio!",
+    "THANK_YOU": "Entrega porta a porta",
     "TERMS": "Termos",
     "PAYMENT_TERMS": "Você receberá um e-mail com o preço e o prazo para pagamento dentro de 24 horas.",
     "SUBTOTAL": "Subtotal",

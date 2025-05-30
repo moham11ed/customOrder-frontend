@@ -23,6 +23,7 @@ export interface OrderData {
   clientCountry: string;
   clientCity: string;
   clientStreet: string;
+  clientZip: string;
   createdAt?: Date;
   status?: string;
 }

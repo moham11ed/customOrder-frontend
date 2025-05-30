@@ -20,6 +20,7 @@ export class ClientInfoComponent {
     country: '',
     city: '',
     street: '',
+    zip: ''  // Added zip field
   };
 
   errorMessage: string | null = null;
@@ -32,6 +33,10 @@ export class ClientInfoComponent {
     const currentOrder = this.orderService.getCurrentOrder();
     if (currentOrder.clientInfo) {
       this.user = { ...currentOrder.clientInfo };
+      // Ensure zip exists when loading existing data
+      if (!this.user.zip) {
+        this.user.zip = '';
+      }
     }
   }
 
@@ -43,6 +48,7 @@ export class ClientInfoComponent {
       this.user.country.trim() &&
       this.user.city.trim() &&
       this.user.street.trim() &&
+      this.user.zip.trim() &&  // Added zip validation
       this.isValidEmail(this.user.email)
     );
   }

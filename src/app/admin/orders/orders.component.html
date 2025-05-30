@@ -1,5 +1,24 @@
 <div class="container mt-4">
+  <div class="bg-light p-4 rounded-3 mb-4 shadow-sm">
+  <h4 class="mb-4 text-dark">Orders Status Count</h4>
+  <div class="d-flex flex-wrap gap-3">
+    <div *ngFor="let status of getStatusKeys()" 
+         class="p-3 rounded-3 shadow-sm d-flex flex-column align-items-center"
+         [ngClass]="{
+           'bg-primary bg-opacity-10': status.toLowerCase()
+         }"
+         style="min-width: 120px;">
+      <span class="text-muted small mb-1">{{ status | titlecase }}</span>
+      <span class="fs-3 fw-bold" >
+           
+        {{ statusCounts[status] }}
+      </span>
+      
+    </div>
+  </div>
+</div>
   <h2 class="mb-4">Orders Management</h2>
+
 
   <!-- Search and Filter Section -->
   <div class="card mb-4">
@@ -30,6 +49,7 @@
           <label class="form-label">Filter by Status</label>
           <select class="form-select" [(ngModel)]="statusFilter" (change)="filterByStatus()">
             <option value="">All Statuses</option>
+            <option value="Received">Received</option>
             <option value="Pending">Pending</option>
             <option value="Processing">Processing</option>
             <option value="Shipped">Shipped</option>
@@ -107,7 +127,7 @@
                   </button>
                   <ul class="dropdown-menu">
                     <li *ngFor='let status of ["Pending", "Processing", "Shipped", "Delivered", "Cancelled"]'>
-                      <a class="dropdown-item" (click)="updateOrderStatus(order.id!, status)">{{ status }}</a>
+                      <a class="dropdown-item" (click)="updateOrderStatus(order.id!, status , order.clientEmail)">{{ status }}</a>
                     </li>
                   </ul>
                 </div>
@@ -180,6 +200,7 @@
               <h6>Shipping Address</h6>
               <p>{{ selectedOrder?.street }}</p>
               <p>{{ selectedOrder?.city }}, {{ selectedOrder?.country }}</p>
+              <p>{{ selectedOrder?.zip }}</p>
             </div>
           </div>
         </div>

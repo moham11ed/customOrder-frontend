@@ -5,6 +5,9 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Subscribe to Newsletter</h5>
+      <div class="subscriber-count">
+        Total Subscribers: <span class="count-number">{{ subscriberCount }}</span>
+      </div>
       <form (submit)="onSubmit()">
         <div class="mb-3">
           <label for="emailInput" class="form-label">Email address</label>
@@ -24,7 +27,14 @@
 
   <!-- Subscribers List -->
   <div class="subscribers-list">
-    <h5 class="mb-3">Current Subscribers</h5>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0">Current Subscribers ({{ subscribers.length }})</h5>
+      <button class="btn btn-success send-bulk-btn" 
+              (click)="openBulkEmailPopup()"
+              [disabled]="isLoading || subscribers.length === 0">
+        Send Bulk Email
+      </button>
+    </div>
     
     <div *ngIf="isLoading && subscribers.length === 0" class="text-center">
       <div class="spinner-border" role="status">
@@ -41,7 +51,6 @@
         <thead>
           <tr>
             <th>Email</th>
-            
             <th>Actions</th>
           </tr>
         </thead>
@@ -58,6 +67,33 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Bulk Email Popup -->
+  <div *ngIf="showPopup" class="popup-overlay">
+    <div class="popup-content">
+      <h4>Send Email to {{ subscribers.length }} Subscribers</h4>
+      <form (ngSubmit)="sendBulkEmail()">
+        <div class="mb-3">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subject" 
+                 [(ngModel)]="emailSubject" name="emailSubject" required>
+        </div>
+        <div class="mb-3">
+          <label for="body" class="form-label">Message</label>
+          <textarea class="form-control" id="body" rows="5" 
+                   [(ngModel)]="emailBody" name="emailBody" required></textarea>
+        </div>
+        <div class="d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-outline-secondary" 
+                  (click)="closePopup()">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Send Email
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

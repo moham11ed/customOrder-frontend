@@ -80,17 +80,32 @@
               </div>
             </div>
 
-            <div class="mb-4">
-              <label for="street" class="form-label">{{ 'USER.STREET' | translate }}</label>
-              <input type="text" 
-                     class="form-control" 
-                     id="street"
-                     [(ngModel)]="user.street" 
-                     name="street"
-                     required
-                     [class.is-invalid]="clientForm.submitted && !user.street">
-              <div *ngIf="clientForm.submitted && !user.street" class="invalid-feedback">
-                {{ 'VALIDATION.REQUIRED' | translate }}
+            <div class="row mb-4">
+              <div class="col-md-8 mb-3">
+                <label for="street" class="form-label">{{ 'USER.STREET' | translate }}</label>
+                <input type="text" 
+                       class="form-control" 
+                       id="street"
+                       [(ngModel)]="user.street" 
+                       name="street"
+                       required
+                       [class.is-invalid]="clientForm.submitted && !user.street">
+                <div *ngIf="clientForm.submitted && !user.street" class="invalid-feedback">
+                  {{ 'VALIDATION.REQUIRED' | translate }}
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="zip" class="form-label">{{ 'USER.ZIP' | translate }}</label>
+                <input type="text" 
+                       class="form-control" 
+                       id="zip"
+                       [(ngModel)]="user.zip" 
+                       name="zip"
+                       required
+                       [class.is-invalid]="clientForm.submitted && !user.zip">
+                <div *ngIf="clientForm.submitted && !user.zip" class="invalid-feedback">
+                  {{ 'VALIDATION.REQUIRED' | translate }}
+                </div>
               </div>
             </div>
 

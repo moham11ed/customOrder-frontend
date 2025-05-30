@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-how-to-use',
@@ -10,5 +11,8 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './how-to-use.component.css'
 })
 export class HowToUseComponent {
+  constructor(private translate: TranslateService) {}
+
+
 
 }

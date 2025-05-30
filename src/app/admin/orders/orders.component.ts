@@ -3,6 +3,7 @@ import { OrdersService, OrderData } from '../../services/orders.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EmailService } from '../../services/emails.service';
 
 @Component({
   selector: 'app-orders',
@@ -22,8 +23,13 @@ export class OrdersComponent implements OnInit {
   searchOrderId: number | null = null;
   statusFilter = '';
   showModal = false;
+  isSendingEmail = false;
+  statusCounts: { [key: string]: number } = {};
 
-  constructor(private orderService: OrdersService) {}
+  constructor(
+    private orderService: OrdersService,
+    private emailService: EmailService
+  ) {}
 
   ngOnInit(): void {
     this.loadOrders();
@@ -35,6 +41,7 @@ export class OrdersComponent implements OnInit {
       next: (orders) => {
         this.orders = orders;
         this.filteredOrders = [...orders];
+        this.calculateStatusCounts();
         this.isLoading = false;
       },
       error: (err) => {
@@ -44,11 +51,18 @@ export class OrdersComponent implements OnInit {
     });
   }
 
+  calculateStatusCounts(): void {
+    this.statusCounts = {};
+    this.orders.forEach(order => {
+      const status = order.status?.toLowerCase() || 'unknown';
+      this.statusCounts[status] = (this.statusCounts[status] || 0) + 1;
+    });
+  }
+
   searchOrders(): void {
     this.isLoading = true;
     this.errorMessage = '';
     
-    // Search by Order ID takes priority if both fields are filled
     if (this.searchOrderId) {
       this.orderService.getOrderById(this.searchOrderId).subscribe({
         next: (order) => {
@@ -62,7 +76,6 @@ export class OrdersComponent implements OnInit {
         }
       });
     } 
-    // If no Order ID but email is provided
     else if (this.searchEmail) {
       this.orderService.getOrdersByEmail(this.searchEmail).subscribe({
         next: (orders) => {
@@ -75,7 +88,6 @@ export class OrdersComponent implements OnInit {
         }
       });
     } 
-    // If no search criteria, show all orders
     else {
       this.filteredOrders = [...this.orders];
       this.isLoading = false;
@@ -96,7 +108,7 @@ export class OrdersComponent implements OnInit {
     this.searchEmail = '';
     this.searchOrderId = null;
     this.statusFilter = '';
-    this.searchOrders(); // This will reload all orders
+    this.searchOrders();
   }
 
   viewOrderDetails(id: number): void {
@@ -117,7 +129,7 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  updateOrderStatus(id: number, newStatus: string): void {
+  updateOrderStatus(id: number, newStatus: string, email: string): void {
     if (!newStatus) return;
     
     if (confirm(`Are you sure you want to update the status to ${newStatus}?`)) {
@@ -126,6 +138,7 @@ export class OrdersComponent implements OnInit {
         next: (response) => {
           this.successMessage = response.message || 'Order status updated successfully';
           this.loadOrders();
+          this.sendStatusUpdateEmail(email, id, newStatus);
           this.isLoading = false;
         },
         error: (err) => {
@@ -134,6 +147,22 @@ export class OrdersComponent implements OnInit {
         }
       });
     }
+  }
+
+  private sendStatusUpdateEmail(toEmail: string, orderId: number, newStatus: string): void {
+    this.isSendingEmail = true;
+    this.emailService.sendOrderStatusUpdate(toEmail, orderId, newStatus)
+      .subscribe({
+        next: () => {
+          this.successMessage += ' Status update email sent successfully.';
+          this.isSendingEmail = false;
+        },
+        error: (err) => {
+          console.error('Failed to send status email:', err);
+          this.errorMessage = 'Status updated but failed to send email notification.';
+          this.isSendingEmail = false;
+        }
+      });
   }
 
   closeDetails(): void {
@@ -145,4 +174,7 @@ export class OrdersComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
   }
+  getStatusKeys(): string[] {
+  return Object.keys(this.statusCounts);
+}
 }

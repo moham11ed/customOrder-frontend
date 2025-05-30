@@ -3,6 +3,8 @@ import { OrderService } from '../../../services/order.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { EmailService } from '../../../services/emails.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-summary',
@@ -14,41 +16,74 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class OrderSummaryComponent implements OnInit {
   orderData: any;
   isSubmitting = false;
+  isSendingEmail = false;
   errorMessage: string | null = null;
+  emailSuccess = false;
 
   constructor(
     private orderService: OrderService,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private emailService: EmailService
   ) {}
 
   ngOnInit(): void {
     this.orderData = this.orderService.getCurrentOrder();
   }
 
+  private sendOrderConfirmationEmail(id: number): void {
+    this.isSendingEmail = true;
+    this.emailSuccess = false;
+    
+    this.emailService.sendOrderConfirmation(
+      this.orderData.clientInfo.email , 
+      id
+    )
+    .pipe(
+      finalize(() => this.isSendingEmail = false)
+    )
+    .subscribe({
+      next: (res) => {
+        this.emailSuccess = true;
+        console.log('Confirmation email sent successfully:', res);
+      },
+      error: (err) => {
+        console.error('Failed to send confirmation email:', err);
+        // Don't show error to user since order was successfully submitted
+        // Just log it for debugging
+      }
+    });
+  }
+
   submitOrder(): void {
+    if (this.isSubmitting) return;
+    
     this.isSubmitting = true;
     this.errorMessage = null;
 
     this.orderService.submitOrder().subscribe({
       next: (response) => {
-        this.isSubmitting = false;
         if (response.success) {
           this.orderService.updateOrderData({ id: response.orderId });
-          // You might want to navigate to a confirmation page here
+          this.sendOrderConfirmationEmail(response.orderId);
+          
           this.router.navigate(['/invoice'], { 
             queryParams: { orderId: response.orderId } 
           });
         } else {
-          this.errorMessage = this.translate.instant('F.order_submission_failed');
+          this.handleOrderError('F.order_submission_failed');
         }
       },
       error: (err) => {
-        this.isSubmitting = false;
-        this.errorMessage = this.translate.instant(err.message || 'F.order_error');
+        this.handleOrderError(err.message || 'F.order_error');
         console.error('Order submission failed:', err);
       },
     });
+  }
+
+  private handleOrderError(messageKey: string): void {
+    this.isSubmitting = false;
+    this.errorMessage = this.translate.instant(messageKey);
   }
 
   goBack(): void {

@@ -1,4 +1,3 @@
-// order.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -25,6 +24,7 @@ export interface Order {
     country: string;
     city: string;
     street: string;
+    zip: string; 
   };
   status?: string;
   createdAt?: string;
@@ -49,33 +49,29 @@ export class OrderService {
     return this.orderDataSubject.value;
   }
 
-submitOrder(): Observable<{ success: boolean; orderId: number; message: string }> {
-  const orderData = this.prepareOrderData();
-  return this.http.post<{ 
-    id: number; 
-    success: boolean; 
-    message: string 
-  }>(this.apiUrl, orderData).pipe(
-    map(response => ({
-      success: response.success,
-      orderId: response.id,
-      message: response.message
-    })),
-    catchError((error: HttpErrorResponse) => {
-      // Handle different error scenarios with proper typing
-      const errorResponse = {
-        success: false,
-        orderId: 0,
-        message: this.handleOrderError(error)
-      };
-      return throwError(() => errorResponse);
-    })
-  );
-}
-
-
-
-  
+  submitOrder(): Observable<{ success: boolean; orderId: number; message: string }> {
+    const orderData = this.prepareOrderData();
+    return this.http.post<{ 
+      id: number; 
+      success: boolean; 
+      message: string 
+    }>(this.apiUrl, orderData).pipe(
+      map(response => ({
+        success: response.success,
+        orderId: response.id,
+        message: response.message
+      })),
+      catchError((error: HttpErrorResponse) => {
+        // Handle different error scenarios with proper typing
+        const errorResponse = {
+          success: false,
+          orderId: 0,
+          message: this.handleOrderError(error)
+        };
+        return throwError(() => errorResponse);
+      })
+    );
+  }
 
   private prepareOrderData(): Order {
     const currentData = this.orderDataSubject.value;
@@ -96,12 +92,13 @@ submitOrder(): Observable<{ success: boolean; orderId: number; message: string }
         phone: currentData.clientInfo?.phone || '',
         country: currentData.clientInfo?.country || '',
         city: currentData.clientInfo?.city || '',
-        street: currentData.clientInfo?.street || ''
+        street: currentData.clientInfo?.street || '',
+        zip: currentData.clientInfo?.zip || '' // Added zip field
       }
     };
   }
 
-  private handleOrderError(error: HttpErrorResponse): Observable<never> {
+  private handleOrderError(error: HttpErrorResponse): string {
     let errorMessage = 'F.order_error';
     
     if (error.status === 400) {
@@ -112,7 +109,7 @@ submitOrder(): Observable<{ success: boolean; orderId: number; message: string }
       errorMessage = 'F.order_conflict';
     }
 
-    return throwError(() => new Error(errorMessage));
+    return errorMessage;
   }
 
   clearOrder(): void {

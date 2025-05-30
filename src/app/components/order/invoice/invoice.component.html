@@ -1,30 +1,31 @@
 <div class="container mt-4 mb-5" id="invoice">
-  <div class="card">
+  <div class="card border-primary">
     <div class="card-body">
-      <!-- Row 1: Invoice Header -->
-      <div class="row mb-4">
-        <div class="col-md-12">
-          <h1 class="display-4">{{ 'INVOICE.TITLE' | translate }}</h1>
-          <p class="text-muted">{{ 'INVOICE.ORDER_CODE' | translate }} #: {{orderData.id}}</p>
-          <p class="text-muted">{{ 'INVOICE.DATE' | translate }}: {{invoiceDate}}</p>
+      <!-- Row 1: Invoice Header - Right Aligned -->
+      <div class="row mb-4 justify-content-end">
+        <div class="col-md-6 text-end  border-primary pb-3">
+          <h1 class="display-4 text-primary">{{ 'INVOICE.TITLE' | translate }}</h1>
+          <p >{{ 'INVOICE.ORDER_CODE' | translate }} #:<span class="text-muted border p-2 bg-light rounded">{{orderData.id}}</span> </p>
+          <br>
+          <p >{{ 'INVOICE.DATE' | translate }}:<span class="text-muted border p-2 bg-light rounded">{{invoiceDate}}</span> </p>
         </div>
       </div>
 
       <!-- Row 2: Bill To and Ship To -->
       <div class="row mb-4">
         <div class="col-md-6">
-          <div class="border p-3">
-            <h5>{{ 'INVOICE.BILL_TO' | translate }}</h5>
-            <p class="mb-1"><strong>{{orderData.clientInfo?.name}}</strong></p>
-            <p class="mb-1">{{ 'INVOICE.PHONE' | translate }}: {{orderData.clientInfo?.phone}}</p>
-            <p class="mb-0">{{ 'INVOICE.EMAIL' | translate }}: {{orderData.clientInfo?.email}}</p>
+          <div class="border p-3 rounded bg-light">
+            <h5 class="text-primary">{{ 'INVOICE.BILL_TO' | translate }}</h5>
+            <p class="mb-1 border p-2 bg-white rounded"><strong>{{orderData.clientInfo?.name}}</strong></p>
+            <p class="mb-1 border p-2 bg-white rounded">{{ 'INVOICE.PHONE' | translate }}: {{orderData.clientInfo?.phone}}</p>
+            <p class="mb-0 border p-2 bg-white rounded">{{ 'INVOICE.EMAIL' | translate }}: {{orderData.clientInfo?.email}}</p>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="border p-3">
-            <h5>{{ 'INVOICE.SHIP_TO' | translate }}</h5>
-            <p class="mb-1">{{orderData.clientInfo?.street}}</p>
-            <p class="mb-1">{{orderData.clientInfo?.city}}, {{orderData.clientInfo?.country}}</p>
+          <div class="border p-3 rounded bg-light">
+            <h5 class="text-primary">{{ 'INVOICE.SHIP_TO' | translate }}</h5>
+            <p class="mb-1 border p-2 bg-white rounded">{{orderData.clientInfo?.street}}</p>
+            <p class="mb-1 border p-2 bg-white rounded">{{orderData.clientInfo?.city}}, {{orderData.clientInfo?.country}}</p>
           </div>
         </div>
       </div>
@@ -33,8 +34,8 @@
       <div class="row mb-4">
         <div class="col-md-12">
           <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead class="table-light">
+            <table class="table table-bordered border-primary">
+              <thead class="table-primary bg-blue">
                 <tr>
                   <th>{{ 'INVOICE.ITEM' | translate }}</th>
                   <th>{{ 'INVOICE.DESCRIPTION' | translate }}</th>
@@ -44,12 +45,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>
+                  <td class="border p-2 bg-white">1</td>
+                  <td class="border p-2 bg-white">
                     <strong>{{orderData.productName}}</strong>
                   </td>
-                  <td class="text-end">{{orderData.quantity}}</td>
-                  <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
+                  <td class="text-end border p-2 bg-white">{{orderData.quantity}}</td>
+                  <td class="text-end border p-2 bg-white">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
                 </tr>
               </tbody>
             </table>
@@ -57,58 +58,33 @@
         </div>
       </div>
 
+      
       <!-- Row 4: Notes/Terms and Totals -->
-      <div class="row mb-4">
-        <!-- Notes and Terms -->
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="border p-3 h-100">
-                <h5>{{ 'INVOICE.NOTES' | translate }}</h5>
-                <p class="text-muted">{{ 'INVOICE.THANK_YOU' | translate }}</p>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="border p-3 h-100">
-                <h5>{{ 'INVOICE.TERMS' | translate }}</h5>
-                <p class="text-muted">{{ 'INVOICE.PAYMENT_TERMS' | translate }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Totals -->
-        <div class="col-md-4">
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td><strong>{{ 'INVOICE.SUBTOTAL' | translate }}</strong></td>
-                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
-              </tr>
-              <tr>
-                <td><strong>{{ 'INVOICE.TAX' | translate }}</strong></td>
-                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
-              </tr>
-              <tr>
-                <td><strong>{{ 'INVOICE.DISCOUNT' | translate }}</strong></td>
-                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
-              </tr>
-              <tr class="table-active">
-                <td><strong>{{ 'INVOICE.TOTAL' | translate }}</strong></td>
-                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
-              </tr>
-              <tr>
-                <td><strong>{{ 'INVOICE.AMOUNT_PAID' | translate }}</strong></td>
-                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
-              </tr>
-              <tr class="table-primary">
-                <td><strong>{{ 'INVOICE.BALANCE_DUE' | translate }}</strong></td>
-                <td class="text-end">{{ 'INVOICE.CURRENCY' | translate }}0.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<div class="row mb-4">
+  <!-- Notes and Terms - Stacked vertically -->
+  <div class="col-md-8">
+    <div class="border p-3 mb-3 rounded bg-light">
+      <h5 class="text-primary">{{ 'INVOICE.NOTES' | translate }}</h5>
+      <p class="text-muted border p-2 bg-white rounded">{{ 'INVOICE.PAYMENT_TERMS' | translate }}</p>
+    </div>
+    <div class="border p-3 rounded bg-light">
+      <h5 class="text-primary">{{ 'INVOICE.TERMS' | translate }}</h5>
+      <p class="text-muted border p-2 bg-white rounded">{{ 'INVOICE.THANK_YOU' | translate }}</p>
+    </div>
+  </div>
+  
+  <!-- Totals - Right aligned -->
+  <div class="col-md-4">
+    <div class="d-flex flex-column align-items-end">
+      <p class="text-end w-100"><strong>{{ 'INVOICE.SUBTOTAL' | translate }}:</strong> <span class="text-muted border p-2 bg-light rounded">{{ 'INVOICE.CURRENCY' | translate }}0.00</span></p>
+      <p class="text-end w-100"><strong>{{ 'INVOICE.TAX' | translate }}:</strong> <span class="text-muted border p-2 bg-light rounded">{{ 'INVOICE.CURRENCY' | translate }}0.00</span></p>
+      <p class="text-end w-100"><strong>{{ 'INVOICE.DISCOUNT' | translate }}:</strong> <span class="text-muted border p-2 bg-light rounded">{{ 'INVOICE.CURRENCY' | translate }}0.00</span></p>
+      <p class="text-end w-100 table-active"><strong>{{ 'INVOICE.TOTAL' | translate }}:</strong> <span class="text-muted border p-2 bg-light rounded">{{ 'INVOICE.CURRENCY' | translate }}0.00</span></p>
+      <p class="text-end w-100"><strong>{{ 'INVOICE.AMOUNT_PAID' | translate }}:</strong> <span class="text-muted border p-2 bg-light rounded">{{ 'INVOICE.CURRENCY' | translate }}0.00</span></p>
+      <p class="text-end w-100 table-primary"><strong>{{ 'INVOICE.BALANCE_DUE' | translate }}:</strong> <span class="text-muted border p-2 bg-light rounded">{{ 'INVOICE.CURRENCY' | translate }}0.00</span></p>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 
