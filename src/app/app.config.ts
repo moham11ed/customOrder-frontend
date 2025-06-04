@@ -6,6 +6,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { CustomTranslateLoader } from './loaders/custom-translate-loader';
+import { TranslationService } from './services/translation.service';
 
 // Factory function for TranslateHttpLoader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -18,12 +20,13 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
-    provideTranslateService({
+   provideTranslateService({
       defaultLanguage: 'ar',
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
+        useFactory: (http: HttpClient, translationService: TranslationService) =>
+          new CustomTranslateLoader(http, translationService),
+        deps: [HttpClient, TranslationService],
       },
     }),
   ],

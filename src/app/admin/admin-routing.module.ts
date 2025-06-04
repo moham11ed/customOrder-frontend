@@ -9,18 +9,20 @@ import { DesignsComponent } from './designs/designs.component';
 import { ShapeWithDesignComponent } from './shape-with-design/shape-with-design.component';
 import { ProductNamesComponent } from './product-names/product-names.component';
 import { SubscripersComponent } from './subscripers/subscripers.component';
+import { AdminsComponent } from './admins/admins.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent ,
     children: [
       { path: 'orders', component: OrdersComponent},
-  { path: 'categories',component: CategoriesComponent },
-  { path: 'oils', component : OilsComponent },
-  { path: 'shapes', component: ShapesComponent},
-  { path: 'designs', component: DesignsComponent},
-  { path: 'shape-with-design', component: ShapeWithDesignComponent },
-  { path: 'product-names', component: ProductNamesComponent },
-  { path: 'subscripers', component: SubscripersComponent },
+      { path: 'categories',component: CategoriesComponent },
+      { path: 'oils', component : OilsComponent },
+      { path: 'shapes', component: ShapesComponent},
+      { path: 'designs', component: DesignsComponent},
+      { path: 'shape-with-design', component: ShapeWithDesignComponent },
+      { path: 'product-names', component: ProductNamesComponent },
+      { path: 'subscripers', component: SubscripersComponent },
+      { path: 'admins',component: AdminsComponent},
 
 
     ]},

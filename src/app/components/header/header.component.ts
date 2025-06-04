@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-header',
@@ -19,10 +20,14 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent {
 
-  constructor(public translate: TranslateService, private router: Router) {}
+  constructor(public translate: TranslateService,
+     private router: Router,
+     private dbtranslate: TranslationService
+    ) {}
 
   switchLanguage(language: string) {
     this.translate.use(language);
+    
   }
 
   onDoubleClick() {

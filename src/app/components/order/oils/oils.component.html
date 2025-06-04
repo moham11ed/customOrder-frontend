@@ -31,7 +31,7 @@
         >
           <img [src]="oil.imageUrl" [alt]="oil.name" class="card-img-top p-3" style="height: 180px; object-fit: contain;">
           <div class="card-body text-center">
-            <h5 class="card-title">{{ oil.name }}</h5>
+            <h5 class="card-title">{{ oil.name | translate }}</h5>
           </div>
           <div *ngIf="isSelected(oil)" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
             {{ selectedOils.indexOf(oil) + 1 }}
@@ -49,7 +49,7 @@
         <div class="d-flex flex-wrap gap-3">
           <div *ngFor="let oil of selectedOils; let i = index" class="d-flex align-items-center justify-content-center p-2 border rounded w-25">
             <span class="badge bg-primary me-2">{{ i + 1 }}</span>
-            <span>{{ oil.name }}</span>
+            <span>{{ oil.name  |translate}}</span>
           </div>
         </div>
       </div>

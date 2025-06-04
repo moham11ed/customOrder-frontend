@@ -13,8 +13,8 @@
             <div class="border-bottom pb-2 mb-2" *ngIf="orderData.id">
               <p class="mb-0"><strong>{{ 'ORDER_SUMMARY.ORDER_ID' | translate }}:</strong> {{ orderData.id }}</p>
             </div>
-            <p><strong>{{ 'ORDER_SUMMARY.PRODUCT_TYPE' | translate }}:</strong> {{ orderData.productType }}</p>
-            <p><strong>{{ 'ORDER_SUMMARY.PRODUCT_NAME' | translate }}:</strong> {{ orderData.productName || ('COMMON.NOT_SPECIFIED' | translate) }}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.PRODUCT_TYPE' | translate }}:</strong> {{ orderData.productType | translate}}</p>
+            <p><strong>{{ 'ORDER_SUMMARY.PRODUCT_NAME' | translate }}:</strong> {{ orderData.productName | translate }}</p>
           </div>
           <div class="col-md-6">
             <p><strong>{{ 'ORDER_SUMMARY.QUANTITY' | translate }}:</strong> {{ orderData.quantity || 0 }}</p>
@@ -28,7 +28,7 @@
         <h3 class="card-title">{{ 'ORDER_SUMMARY.SELECTED_OILS' | translate }}</h3>
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let oil of orderData.selectedOils">
-            {{ oil.name || oil.id }}
+            {{ oil.name | translate }}
             <span class="badge bg-primary rounded-pill">{{ oil.quantity || 1 }}</span>
           </li>
         </ul>
@@ -45,7 +45,6 @@
             <div class="card-body text-center">
               <img *ngIf="orderData.shapeImageUrl" [src]="orderData.shapeImageUrl" 
                    [alt]="'ORDER_SUMMARY.SHAPE_ALT' | translate" class="img-fluid rounded" style="max-height: 200px;">
-              <p class="mt-2" *ngIf="orderData.shapeName"><strong>{{ orderData.shapeName }}</strong></p>
             </div>
           </div>
         </div>
@@ -59,7 +58,6 @@
             <div class="card-body text-center">
               <img *ngIf="orderData.designUrl" [src]="orderData.designUrl" 
                    [alt]="'ORDER_SUMMARY.DESIGN_ALT' | translate" class="img-fluid rounded" style="max-height: 200px;">
-              <p class="mt-2" *ngIf="orderData.designName"><strong>{{ orderData.designName }}</strong></p>
             </div>
           </div>
         </div>

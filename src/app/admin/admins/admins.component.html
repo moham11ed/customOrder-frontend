@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Admin Management</h2>
+
+  <!-- Alert Messages -->
+  <div *ngIf="alertMessage" class="alert alert-{{alertType}} alert-dismissible fade show">
+    {{alertMessage}}
+    <button type="button" class="btn-close" (click)="clearAlert()"></button>
+  </div>
+
+  <!-- Registration Form -->
+  <div class="card mb-4">
+    <div class="card-header bg-light">
+      <h3 class="mb-0">Register New Admin</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="registerAdmin()">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="username" 
+            formControlName="username"
+            [class.is-invalid]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+          >
+          <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="invalid-feedback">
+            <span *ngIf="registerForm.get('username')?.hasError('required')">Username is required</span>
+            <span *ngIf="registerForm.get('username')?.hasError('minlength')">Username must be at least 3 characters</span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input 
+            type="password" 
+            class="form-control" 
+            id="password" 
+            formControlName="password"
+            [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          >
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="invalid-feedback">
+            <span *ngIf="registerForm.get('password')?.hasError('required')">Password is required</span>
+            <span *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</span>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="registerForm.invalid || isLoading"
+        >
+          <span *ngIf="!isLoading">Register</span>
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admins List -->
+  <div class="card">
+    <div class="card-header bg-light">
+      <h3 class="mb-0">Admin List</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="isLoading && admins.length === 0" class="text-center py-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading && admins.length === 0" class="alert alert-info">
+        No admins found
+      </div>
+
+      <div *ngIf="admins.length > 0" class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let admin of admins">
+              <td>{{ admin.id }}</td>
+              <td>{{ admin.username }}</td>
+              <td>
+                <button 
+                  class="btn btn-sm btn-danger"
+                  (click)="deleteAdmin(admin.id)"
+                  [disabled]="isLoading"
+                >
+                  <span *ngIf="!isLoading">Delete</span>
+                  <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

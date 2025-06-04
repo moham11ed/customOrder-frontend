@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslationService } from './services/translation.service';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +18,16 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(public translate: TranslateService,) {
-    this.translate.setDefaultLang('ar');
+ 
+
+  constructor(public translate: TranslateService) {
     this.translate.use('ar');
+    this.translate.setDefaultLang('ar');
+
+  
   }
 
-  switchLanguage(language: string) {
-    this.translate.use(language);
-  }
+
 
 
   title = 'ETABEMA';

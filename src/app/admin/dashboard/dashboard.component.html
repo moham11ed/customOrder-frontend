@@ -58,6 +58,12 @@
               Subscripers
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/admin/admins" routerLinkActive="active">
+              <i class="bi bi-people me-2"></i>
+              Admins
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -68,6 +74,13 @@
         <h1 class="h2">Dashboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
+            <button 
+              type="button" 
+              class="btn btn-success"
+              data-bs-toggle="modal" 
+              data-bs-target="#translationModal">
+              <i class="bi bi-translate me-1"></i> Add Translation
+            </button>
             <button 
               type="button" 
               class="btn btn-primary"
@@ -88,7 +101,90 @@
 
       <router-outlet></router-outlet>
 
-      <!-- Bootstrap Modal for Image Upload -->
+      <!-- Translation Modal -->
+      <div class="modal fade" id="translationModal" tabindex="-1" aria-labelledby="translationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="translationModalLabel">Add New Translation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="addTranslation()" #translationForm="ngForm">
+                <div class="mb-3">
+                  <label for="translationKey" class="form-label">Translation Key</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="translationKey"
+                    [(ngModel)]="translationKey" 
+                    name="translationKey"
+                    placeholder="e.g., 'DASHBOARD.TITLE'" 
+                    required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="arabicValue" class="form-label">Arabic Value</label>
+                  <textarea
+                    class="form-control" 
+                    id="arabicValue"
+                    [(ngModel)]="arabicValue" 
+                    name="arabicValue"
+                    placeholder="القيمة العربية"
+                    dir="rtl"
+                    required></textarea>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="englishValue" class="form-label">English Value</label>
+                  <textarea
+                    class="form-control" 
+                    id="englishValue"
+                    [(ngModel)]="englishValue" 
+                    name="englishValue"
+                    placeholder="English value"
+                    required></textarea>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="portugueseValue" class="form-label">Portuguese Value</label>
+                  <textarea
+                    class="form-control" 
+                    id="portugueseValue"
+                    [(ngModel)]="portugueseValue" 
+                    name="portugueseValue"
+                    placeholder="Valor em português"
+                    required></textarea>
+                </div>
+                
+                <div *ngIf="errorMessage" class="alert alert-danger">
+                  {{ errorMessage }}
+                </div>
+                
+                <div *ngIf="saveSuccess" class="alert alert-success">
+                  Translation saved successfully!
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button 
+                    type="submit" 
+                    class="btn btn-primary"
+                    [disabled]="isSavingTranslation || !translationForm.form.valid">
+                    <span *ngIf="!isSavingTranslation">Save Translation</span>
+                    <span *ngIf="isSavingTranslation">
+                      <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                      Saving...
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Upload Modal -->
       <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -135,7 +231,7 @@
                 </div>
                 <div *ngIf="imageUrl" class="mt-3">
                   <p>Preview:</p>
-                  <img [src]="imageUrl" class="img-fluid" style="max-height: 200px;">
+                  <img [src]="imageUrl" class="img-fluid rounded" style="max-height: 200px;">
                 </div>
               </div>
             </div>
@@ -146,7 +242,11 @@
                 class="btn btn-primary"
                 (click)="uploadImage()"
                 [disabled]="!selectedFile || isLoading">
-                Upload
+                <span *ngIf="!isLoading">Upload</span>
+                <span *ngIf="isLoading">
+                  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                  Uploading...
+                </span>
               </button>
             </div>
           </div>
