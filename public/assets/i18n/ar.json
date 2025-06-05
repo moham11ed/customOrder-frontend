@@ -1,11 +1,18 @@
 {
   "T": {
-    "Sitename": "ETABEMA",
+    "Sitename": "AYRAM",
     "Using": "الاستخدام",
     "Tracking": "تتبع",
     "Orders": "الطلبات",
     "NEXT": "التالي",
-    "BACK": "رجوع"
+    "BACK": "رجوع",
+    "Received" :"تم الطلب",
+    "Pending for payment":"في انتظار الدفع",
+    "Design Phase":"مرحلة التصميم",
+    "Printing Phase":"مرحلة الطباعة",
+    "Packing Phase":"مرحلة التعبئة",
+    "Ready for Shipping":"جاهز للشحن",
+    "Shipped": "تم الشحن"
   },
   "F":{
     "invite":"اشترك في نشرتنا الإخبارية",

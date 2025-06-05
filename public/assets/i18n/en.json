@@ -1,11 +1,18 @@
 {
   "T": {
-    "Sitename": "ETABEMA",
+    "Sitename": "AYRAM",
     "Using": "Using",
     "Tracking": "Tracking",
     "Orders": "Orders",
     "NEXT": "Next",
-    "BACK": "Back"
+    "BACK": "Back",
+    "Received" :"Received",
+    "Pending for payment":"Pending for payment",
+    "Design Phase": "Design Phase",
+    "Printing Phase":"Printing Phase" ,
+    "Packing Phase": "Packing Phase",
+    "Ready for Shipping": "Ready for Shipping",
+    "Shipped": "Shipped"
     
   },
   "F": {

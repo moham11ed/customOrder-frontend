@@ -50,11 +50,12 @@
           <select class="form-select" [(ngModel)]="statusFilter" (change)="filterByStatus()">
             <option value="">All Statuses</option>
             <option value="Received">Received</option>
-            <option value="Pending">Pending</option>
-            <option value="Processing">Processing</option>
+            <option value="Pending for payment">Pending for payment</option>
+            <option value="Design Phase">Design Phase</option>
+            <option value="Printing Phase">Printing Phase</option>
+            <option value="Packing Phase">Packing Phase</option>
+            <option value="Ready for Shipping">Ready for Shipping</option>
             <option value="Shipped">Shipped</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Cancelled">Cancelled</option>
           </select>
         </div>
       </div>
@@ -107,11 +108,12 @@
               <td>{{ order.createdAt | date:'shortDate' }}</td>
               <td>
                 <span [ngClass]="{
-                  'badge bg-secondary': order.status === 'Pending',
-                  'badge bg-primary': order.status === 'Processing',
-                  'badge bg-warning': order.status === 'Shipped',
-                  'badge bg-success': order.status === 'Delivered',
-                  'badge bg-danger': order.status === 'Cancelled'
+                  'badge bg-secondary': order.status === 'Pending for payment',
+                  'badge bg-primary': order.status === 'Design Phase',
+                  'badge bg-warning': order.status === 'Printing Phase',
+                  'badge bg-success': order.status === 'Packing Phase',
+                  'badge bg-danger': order.status === 'Ready for Shipping',
+                  
                 }">
                   {{ order.status }}
                 </span>
@@ -126,7 +128,7 @@
                     Status
                   </button>
                   <ul class="dropdown-menu">
-                    <li *ngFor='let status of ["Pending", "Processing", "Shipped", "Delivered", "Cancelled"]'>
+                    <li *ngFor='let status of ["Pending for payment", "Design Phase", "Printing Phase", "Packing Phase", "Ready for Shipping" , "Shipped"]'>
                       <a class="dropdown-item" (click)="updateOrderStatus(order.id!, status , order.clientEmail)">{{ status }}</a>
                     </li>
                   </ul>

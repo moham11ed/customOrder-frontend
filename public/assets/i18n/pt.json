@@ -1,11 +1,18 @@
 {
   "T": {
-    "Sitename": "ETABEMA",
+    "Sitename": "AYRAM",
     "Using": "Usando",
     "Tracking": "Rastreamento",
     "Orders": "Pedidos",
     "NEXT": "Próximo",
-    "BACK": "Voltar"
+    "BACK": "Voltar",
+    "Received": "Recebido",
+    "Pending for payment": "Pendente de pagamento",
+    "Design Phase": "Fase de design",
+    "Printing Phase": "Fase de impressão",
+    "Packing Phase": "Fase de embalagem",
+    "Ready for Shipping": "Pronto para envio",
+    "Shipped": "Enviado"
   },
   "F": {
   "invite": "Inscreva-se na nossa newsletter",
@@ -134,12 +141,7 @@
     "TRACK_BUTTON": "Rastrear Pedido",
     "STATUS_HEADER": "Status do Pedido",
     "CURRENT_STATUS": "Status Atual",
-    "ORDER_ID": "Número do Pedido",
-    "STATUSES": {
-      "Received": "Recebido",
-      "Processing": "Processando",
-      "Completed": "Concluído",
-      "Cancelled": "Cancelado"
-    }
+    "ORDER_ID": "Número do Pedido"
+    
   }
 }

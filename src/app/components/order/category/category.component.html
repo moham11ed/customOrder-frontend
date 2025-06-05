@@ -11,7 +11,7 @@
           <div class="mb-4">
             <div class="alert alert-info text-center mb-4">
               <span *ngIf="!selectedType">{{'C.SELECT_PRODUCT_TYPE' | translate}}</span>
-              <span *ngIf="selectedType" class="fw-bold text-success">{{'C.YOU_SELECTED' | translate}} {{ "T." + selectedType | translate }}</span>
+              <span *ngIf="selectedType" class="fw-bold text-success">{{'C.YOU_SELECTED' | translate}} {{  selectedType | translate }}</span>
             </div>
             
             <div class="row row-cols-1 row-cols-md-2 g-3">
