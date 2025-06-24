@@ -1,4 +1,35 @@
-<video width="100%" height="100%" controls autoplay loop muted>
-  <source src="https://localhost:7176/videos/ar.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div class="character-container">
+  <div class="character" [class.talking]="isTalking">
+    <!-- الشعر -->
+    <div class="hair"></div>
+    
+    <!-- رأس الفتاة -->
+    <div class="head">
+      <!-- عيون -->
+      <div class="eyes">
+        <div class="eye left-eye">
+          <div class="pupil"></div>
+        </div>
+        <div class="eye right-eye">
+          <div class="pupil"></div>
+        </div>
+      </div>
+      <!-- خدود -->
+      <div class="cheeks">
+        <div class="cheek left-cheek"></div>
+        <div class="cheek right-cheek"></div>
+      </div>
+      <!-- فم متحرك -->
+      <div class="mouth-container">
+        <div class="mouth" [class.open]="isMouthOpen"></div>
+      </div>
+    </div>
+    
+    <!-- جسد الفتاة -->
+    <div class="body"></div>
+  </div>
+
+  <button (click)="playAudio()">
+    {{ isPlaying ? 'إيقاف' : 'تشغيل الصوت' }}
+  </button>
+</div>

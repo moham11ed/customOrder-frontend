@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import e from 'express';
 import { environment } from '../../environments/environment';
-
 
 export interface ProductType {
   id: number;
@@ -14,10 +12,11 @@ export interface ProductType {
   providedIn: 'root'
 })
 export class ProductTypeService {
-  private apiUrl = environment.apiURL+'/api/ProductType'; 
+  private apiUrl = `${environment.apiURL}/api/ProductType`;
 
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('API URL:', this.apiUrl); // ✅ دي هتطبع رابط الـ API وقت التشغيل
+  }
 
   // Get all product types
   getProductTypes(): Observable<ProductType[]> {
